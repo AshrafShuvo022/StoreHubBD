@@ -45,12 +45,12 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 3.1 | Write JWT logic (core/security.py) — create token, verify token | ⬜ Todo |
-| 3.2 | Write seller registration endpoint (POST /api/auth/register) | ⬜ Todo |
-| 3.3 | Write seller login endpoint (POST /api/auth/login) | ⬜ Todo |
-| 3.4 | Write token refresh endpoint (POST /api/auth/refresh) | ⬜ Todo |
-| 3.5 | Write get_current_seller dependency (dependencies.py) | ⬜ Todo |
-| 3.6 | Test all auth endpoints via FastAPI docs (/docs) | ⬜ Todo |
+| 3.1 | Write JWT logic (core/security.py) — create token, verify token | ✅ Done |
+| 3.2 | Write seller registration endpoint (POST /api/auth/register) | ✅ Done |
+| 3.3 | Write seller login endpoint (POST /api/auth/login) | ✅ Done |
+| 3.4 | Write token refresh endpoint (POST /api/auth/refresh) | ✅ Done |
+| 3.5 | Write get_current_seller dependency (dependencies.py) | ✅ Done |
+| 3.6 | Test all auth endpoints via FastAPI docs (/docs) | ✅ Done |
 
 ---
 
@@ -59,15 +59,15 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 4.1 | Write seller profile endpoints (GET /api/seller/me, PUT /api/seller/me) | ⬜ Todo |
-| 4.2 | Write Pydantic schemas for seller and product | ⬜ Todo |
-| 4.3 | Write product list endpoint (GET /api/products) | ⬜ Todo |
-| 4.4 | Write product create endpoint (POST /api/products) | ⬜ Todo |
-| 4.5 | Write product update endpoint (PUT /api/products/:id) | ⬜ Todo |
-| 4.6 | Write product delete endpoint (DELETE /api/products/:id) | ⬜ Todo |
-| 4.7 | Write Cloudinary image upload endpoint (POST /api/upload) — returns image URL | ⬜ Todo |
-| 4.8 | Verify all endpoints protected — seller_id checked from JWT | ⬜ Todo |
-| 4.9 | Test all product endpoints via FastAPI docs | ⬜ Todo |
+| 4.1 | Write seller profile endpoints (GET /api/seller/me, PUT /api/seller/me) | ✅ Done |
+| 4.2 | Write Pydantic schemas for seller and product | ✅ Done |
+| 4.3 | Write product list endpoint (GET /api/products) | ✅ Done |
+| 4.4 | Write product create endpoint (POST /api/products) | ✅ Done |
+| 4.5 | Write product update endpoint (PUT /api/products/:id) | ✅ Done |
+| 4.6 | Write product delete endpoint (DELETE /api/products/:id) | ✅ Done |
+| 4.7 | Write Cloudinary image upload endpoint (POST /api/upload) — returns image URL | ✅ Done |
+| 4.8 | Verify all endpoints protected — seller_id checked from JWT | ✅ Done |
+| 4.9 | Test all product endpoints via FastAPI docs | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 3 — Backend Auth** ← In Progress
+**Phase 5 — Backend Public Store** ← In Progress
 
 ---
 
