@@ -76,11 +76,11 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 5.1 | Write get store endpoint (GET /api/store/:store_name) | ⬜ Todo |
-| 5.2 | Write get store products (GET /api/store/:store_name/products) | ⬜ Todo |
-| 5.3 | Write get single product (GET /api/store/:store_name/:product_id) | ⬜ Todo |
-| 5.4 | Handle 404 — store not found | ⬜ Todo |
-| 5.5 | Test via FastAPI docs | ⬜ Todo |
+| 5.1 | Write get store endpoint (GET /api/store/:store_name) | ✅ Done |
+| 5.2 | Write get store products (GET /api/store/:store_name/products) | ✅ Done |
+| 5.3 | Write get single product (GET /api/store/:store_name/:product_id) | ✅ Done |
+| 5.4 | Handle 404 — store not found | ✅ Done |
+| 5.5 | Test via FastAPI docs | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 5 — Backend Public Store** ← In Progress
+**Phase 6 — Backend Orders & SMS** ← In Progress
 
 ---
 
