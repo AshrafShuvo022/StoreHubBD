@@ -89,16 +89,16 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 6.1 | Write SMS service (services/sms_service.py) — Bulk SMS BD | ⬜ Todo |
-| 6.2 | Write order code generator (ARJ-0042 format) | ⬜ Todo |
-| 6.3 | Write place order endpoint (POST /api/store/:store_name/order) | ⬜ Todo |
-| 6.4 | On order placed: generate code, save to DB, send SMS to both | ⬜ Todo |
-| 6.5 | Write list orders endpoint (GET /api/orders) — seller only | ⬜ Todo |
-| 6.6 | Write single order endpoint (GET /api/orders/:id) — seller only | ⬜ Todo |
-| 6.7 | Write update order status (PUT /api/orders/:id/status) | ⬜ Todo |
-| 6.8 | On status update: send SMS to customer | ⬜ Todo |
-| 6.9 | Save SMS log to notifications table | ⬜ Todo |
-| 6.10 | Test full order flow via FastAPI docs | ⬜ Todo |
+| 6.1 | Write SMS service (services/sms_service.py) — Bulk SMS BD | ✅ Done |
+| 6.2 | Write order code generator (ARJ-0042 format) | ✅ Done |
+| 6.3 | Write place order endpoint (POST /api/store/:store_name/order) | ✅ Done |
+| 6.4 | On order placed: generate code, save to DB, send SMS to both | ✅ Done |
+| 6.5 | Write list orders endpoint (GET /api/orders) — seller only | ✅ Done |
+| 6.6 | Write single order endpoint (GET /api/orders/:id) — seller only | ✅ Done |
+| 6.7 | Write update order status (PUT /api/orders/:id/status) | ✅ Done |
+| 6.8 | On status update: send SMS to customer | ✅ Done |
+| 6.9 | Save SMS log to notifications table | ✅ Done |
+| 6.10 | Test full order flow via FastAPI docs | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 6 — Backend Orders & SMS** ← In Progress
+**Phase 7 — Frontend Setup & Auth** ← In Progress
 
 ---
 
