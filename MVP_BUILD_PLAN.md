@@ -107,16 +107,16 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 7.1 | Setup Next.js with TypeScript and Tailwind CSS | ⬜ Todo |
-| 7.2 | Write subdomain middleware (middleware.ts) | ⬜ Todo |
-| 7.3 | Test subdomain routing locally (arjha.localhost → store) | ⬜ Todo |
-| 7.4 | Setup NextAuth.js with credentials provider | ⬜ Todo |
-| 7.5 | Connect NextAuth to FastAPI login endpoint — store FastAPI JWT inside NextAuth session token | ⬜ Todo |
-| 7.6 | Pass FastAPI JWT as Bearer header in all api.ts requests (read from NextAuth session) | ⬜ Todo |
-| 7.7 | Write API client (lib/api.ts) with JWT header | ⬜ Todo |
-| 7.8 | Write login page | ⬜ Todo |
-| 7.9 | Write register page | ⬜ Todo |
-| 7.10 | Test seller login — JWT stored, redirect to dashboard | ⬜ Todo |
+| 7.1 | Setup Next.js with TypeScript and Tailwind CSS | ✅ Done |
+| 7.2 | Write subdomain middleware (proxy.ts) | ✅ Done |
+| 7.3 | Test subdomain routing locally (arjha.localhost → store) | ✅ Done |
+| 7.4 | Setup NextAuth.js with credentials provider | ✅ Done |
+| 7.5 | Connect NextAuth to FastAPI login endpoint — store FastAPI JWT inside NextAuth session token | ✅ Done |
+| 7.6 | Pass FastAPI JWT as Bearer header in all api.ts requests (read from NextAuth session) | ✅ Done |
+| 7.7 | Write API client (lib/api.ts) with JWT header | ✅ Done |
+| 7.8 | Write login page | ✅ Done |
+| 7.9 | Write register page | ✅ Done |
+| 7.10 | Test seller login — JWT stored, redirect to dashboard | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 7 — Frontend Setup & Auth** ← In Progress
+**Phase 8 — Frontend Customer Store** ← In Progress
 
 ---
 
