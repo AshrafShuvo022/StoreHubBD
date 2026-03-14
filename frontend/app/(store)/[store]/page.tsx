@@ -62,7 +62,7 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
               {products.map((product: any) => (
                 <Link
                   key={product.id}
-                  href={`/${storeName}/${product.id}`}
+                  href={`/${product.id}`}
                   className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md transition"
                 >
                   {product.image_url ? (

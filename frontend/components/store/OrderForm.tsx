@@ -65,7 +65,7 @@ export default function OrderForm({
         return
       }
 
-      router.push(`/${storeName}/checkout?code=${data.order_code}&total=${data.total_amount}`)
+      router.push(`/checkout?code=${data.order_code}&total=${data.total_amount}`)
     } catch {
       setError("Something went wrong. Please try again.")
       setLoading(false)

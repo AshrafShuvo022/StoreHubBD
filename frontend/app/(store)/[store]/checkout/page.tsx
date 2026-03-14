@@ -42,7 +42,7 @@ export default async function CheckoutPage({
         </p>
 
         <Link
-          href={`/${storeName}`}
+          href="/"
           className="mt-6 block w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
         >
           Back to Store
