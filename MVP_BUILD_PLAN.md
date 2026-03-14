@@ -141,17 +141,17 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 9.1 | Write dashboard layout with sidebar navigation | ⬜ Todo |
-| 9.2 | Write dashboard home — order summary counts | ⬜ Todo |
-| 9.3 | Write products list page | ⬜ Todo |
-| 9.4 | Write add product form — with Cloudinary image upload widget | ⬜ Todo |
-| 9.5 | Write edit product page | ⬜ Todo |
-| 9.6 | Write delete product with confirmation | ⬜ Todo |
-| 9.7 | Write orders list page with status badges | ⬜ Todo |
-| 9.8 | Write order detail page — full info + customer phone | ⬜ Todo |
-| 9.9 | Write one-click order status update | ⬜ Todo |
-| 9.10 | Write store settings page — logo upload (Cloudinary), description, owner name | ⬜ Todo |
-| 9.11 | Make dashboard mobile responsive | ⬜ Todo |
+| 9.1 | Write dashboard layout with sidebar navigation | ✅ Done |
+| 9.2 | Write dashboard home — order summary counts | ✅ Done |
+| 9.3 | Write products list page | ✅ Done |
+| 9.4 | Write add product form — with Cloudinary image upload widget | ✅ Done |
+| 9.5 | Write edit product page | ✅ Done |
+| 9.6 | Write delete product with confirmation | ✅ Done |
+| 9.7 | Write orders list page with status badges | ✅ Done |
+| 9.8 | Write order detail page — full info + customer phone | ✅ Done |
+| 9.9 | Write one-click order status update | ✅ Done |
+| 9.10 | Write store settings page — logo upload (Cloudinary), description, owner name | ✅ Done |
+| 9.11 | Make dashboard mobile responsive | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 9 — Frontend Seller Dashboard** ← In Progress
+**Phase 10 — Integration & End to End Testing** ← In Progress
 
 ---
 
