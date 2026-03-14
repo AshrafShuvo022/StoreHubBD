@@ -125,14 +125,14 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 8.1 | Write store home page — fetch seller + products by subdomain | ⬜ Todo |
-| 8.2 | Write product grid component | ⬜ Todo |
-| 8.3 | Write product detail page | ⬜ Todo |
-| 8.4 | Write order form (Name, Phone, Address, Quantity, Note) | ⬜ Todo |
-| 8.5 | Validate phone number format on order form (Bangladesh: 01XXXXXXXXX) | ⬜ Todo |
-| 8.6 | On submit: POST order → show confirmation with order ID | ⬜ Todo |
-| 8.7 | Make all store pages mobile responsive | ⬜ Todo |
-| 8.8 | Handle 404 — store not found page | ⬜ Todo |
+| 8.1 | Write store home page — fetch seller + products by subdomain | ✅ Done |
+| 8.2 | Write product grid component | ✅ Done |
+| 8.3 | Write product detail page | ✅ Done |
+| 8.4 | Write order form (Name, Phone, Address, Quantity, Note) | ✅ Done |
+| 8.5 | Validate phone number format on order form (Bangladesh: 01XXXXXXXXX) | ✅ Done |
+| 8.6 | On submit: POST order → show confirmation with order ID | ✅ Done |
+| 8.7 | Make all store pages mobile responsive | ✅ Done |
+| 8.8 | Handle 404 — store not found page | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 8 — Frontend Customer Store** ← In Progress
+**Phase 9 — Frontend Seller Dashboard** ← In Progress
 
 ---
 
