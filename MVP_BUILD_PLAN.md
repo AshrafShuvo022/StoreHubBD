@@ -16,13 +16,13 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 1.1 | Create folder structure (frontend/, backend/, docker-compose.yml) | ⬜ Todo |
-| 1.2 | Initialize FastAPI project + requirements.txt | ⬜ Todo |
-| 1.3 | Initialize Next.js project (TypeScript, App Router, Tailwind) | ⬜ Todo |
+| 1.1 | Create folder structure (frontend/, backend/, docker-compose.yml) | ✅ Done |
+| 1.2 | Initialize FastAPI project + requirements.txt | ✅ Done |
+| 1.3 | Initialize Next.js project (TypeScript, App Router, Tailwind) | ✅ Done |
 | 1.4 | Write docker-compose.yml (frontend + backend + postgres) | ⏭️ Skipped (no Docker for now) |
-| 1.5 | Create .env files for backend and frontend | ⬜ Todo |
-| 1.6 | Verify all services start (uvicorn + npm run dev + postgres) | ⬜ Todo |
-| 1.7 | Configure CORS in FastAPI — allow Next.js origin (localhost:3000) | ⬜ Todo |
+| 1.5 | Create .env files for backend and frontend | ✅ Done |
+| 1.6 | Verify all services start (uvicorn + npm run dev + postgres) | ✅ Done |
+| 1.7 | Configure CORS in FastAPI — allow Next.js origin (localhost:3000) | ✅ Done |
 
 ---
 
@@ -31,12 +31,12 @@ Each phase depends on the previous. Do not skip ahead.
 
 | # | Task | Status |
 |---|------|--------|
-| 2.1 | Write SQLAlchemy models (seller, product, order, order_items, notification) | ⬜ Todo |
-| 2.2 | Setup Alembic for migrations | ⬜ Todo |
-| 2.3 | Write initial migration (create all tables) | ⬜ Todo |
-| 2.4 | Verify PostgreSQL is running on port 5432 before migrating | ⬜ Todo |
-| 2.5 | Run migration — verify tables in pgAdmin | ⬜ Todo |
-| 2.6 | Setup database connection in FastAPI (core/database.py) | ⬜ Todo |
+| 2.1 | Write SQLAlchemy models (seller, product, order, order_items, notification) | ✅ Done |
+| 2.2 | Setup Alembic for migrations | ✅ Done |
+| 2.3 | Write initial migration (create all tables) | ✅ Done |
+| 2.4 | Verify PostgreSQL is running on port 5432 before migrating | ✅ Done |
+| 2.5 | Run migration — verify tables in pgAdmin | ✅ Done |
+| 2.6 | Setup database connection in FastAPI (core/database.py) | ✅ Done |
 
 ---
 
@@ -191,7 +191,7 @@ Each phase depends on the previous. Do not skip ahead.
 ---
 
 ## Current Phase
-**Phase 1 — Project Setup** ← Start Here
+**Phase 3 — Backend Auth** ← In Progress
 
 ---
 
