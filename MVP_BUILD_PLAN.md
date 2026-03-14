@@ -22,6 +22,7 @@ Each phase depends on the previous. Do not skip ahead.
 | 1.4 | Write docker-compose.yml (frontend + backend + postgres) | ⏭️ Skipped (no Docker for now) |
 | 1.5 | Create .env files for backend and frontend | ⬜ Todo |
 | 1.6 | Verify all services start (uvicorn + npm run dev + postgres) | ⬜ Todo |
+| 1.7 | Configure CORS in FastAPI — allow Next.js origin (localhost:3000) | ⬜ Todo |
 
 ---
 
@@ -33,8 +34,9 @@ Each phase depends on the previous. Do not skip ahead.
 | 2.1 | Write SQLAlchemy models (seller, product, order, order_items, notification) | ⬜ Todo |
 | 2.2 | Setup Alembic for migrations | ⬜ Todo |
 | 2.3 | Write initial migration (create all tables) | ⬜ Todo |
-| 2.4 | Run migration — verify tables in pgAdmin | ⬜ Todo |
-| 2.5 | Setup database connection in FastAPI (core/database.py) | ⬜ Todo |
+| 2.4 | Verify PostgreSQL is running on port 5432 before migrating | ⬜ Todo |
+| 2.5 | Run migration — verify tables in pgAdmin | ⬜ Todo |
+| 2.6 | Setup database connection in FastAPI (core/database.py) | ⬜ Todo |
 
 ---
 
@@ -63,8 +65,9 @@ Each phase depends on the previous. Do not skip ahead.
 | 4.4 | Write product create endpoint (POST /api/products) | ⬜ Todo |
 | 4.5 | Write product update endpoint (PUT /api/products/:id) | ⬜ Todo |
 | 4.6 | Write product delete endpoint (DELETE /api/products/:id) | ⬜ Todo |
-| 4.7 | Verify all endpoints protected — seller_id checked from JWT | ⬜ Todo |
-| 4.8 | Test all product endpoints via FastAPI docs | ⬜ Todo |
+| 4.7 | Write Cloudinary image upload endpoint (POST /api/upload) — returns image URL | ⬜ Todo |
+| 4.8 | Verify all endpoints protected — seller_id checked from JWT | ⬜ Todo |
+| 4.9 | Test all product endpoints via FastAPI docs | ⬜ Todo |
 
 ---
 
@@ -108,11 +111,12 @@ Each phase depends on the previous. Do not skip ahead.
 | 7.2 | Write subdomain middleware (middleware.ts) | ⬜ Todo |
 | 7.3 | Test subdomain routing locally (arjha.localhost → store) | ⬜ Todo |
 | 7.4 | Setup NextAuth.js with credentials provider | ⬜ Todo |
-| 7.5 | Connect NextAuth to FastAPI login endpoint | ⬜ Todo |
-| 7.6 | Write API client (lib/api.ts) with JWT header | ⬜ Todo |
-| 7.7 | Write login page | ⬜ Todo |
-| 7.8 | Write register page | ⬜ Todo |
-| 7.9 | Test seller login — JWT stored, redirect to dashboard | ⬜ Todo |
+| 7.5 | Connect NextAuth to FastAPI login endpoint — store FastAPI JWT inside NextAuth session token | ⬜ Todo |
+| 7.6 | Pass FastAPI JWT as Bearer header in all api.ts requests (read from NextAuth session) | ⬜ Todo |
+| 7.7 | Write API client (lib/api.ts) with JWT header | ⬜ Todo |
+| 7.8 | Write login page | ⬜ Todo |
+| 7.9 | Write register page | ⬜ Todo |
+| 7.10 | Test seller login — JWT stored, redirect to dashboard | ⬜ Todo |
 
 ---
 
@@ -125,9 +129,10 @@ Each phase depends on the previous. Do not skip ahead.
 | 8.2 | Write product grid component | ⬜ Todo |
 | 8.3 | Write product detail page | ⬜ Todo |
 | 8.4 | Write order form (Name, Phone, Address, Quantity, Note) | ⬜ Todo |
-| 8.5 | On submit: POST order → show confirmation with order ID | ⬜ Todo |
-| 8.6 | Make all store pages mobile responsive | ⬜ Todo |
-| 8.7 | Handle 404 — store not found page | ⬜ Todo |
+| 8.5 | Validate phone number format on order form (Bangladesh: 01XXXXXXXXX) | ⬜ Todo |
+| 8.6 | On submit: POST order → show confirmation with order ID | ⬜ Todo |
+| 8.7 | Make all store pages mobile responsive | ⬜ Todo |
+| 8.8 | Handle 404 — store not found page | ⬜ Todo |
 
 ---
 
@@ -139,13 +144,14 @@ Each phase depends on the previous. Do not skip ahead.
 | 9.1 | Write dashboard layout with sidebar navigation | ⬜ Todo |
 | 9.2 | Write dashboard home — order summary counts | ⬜ Todo |
 | 9.3 | Write products list page | ⬜ Todo |
-| 9.4 | Write add product form | ⬜ Todo |
+| 9.4 | Write add product form — with Cloudinary image upload widget | ⬜ Todo |
 | 9.5 | Write edit product page | ⬜ Todo |
 | 9.6 | Write delete product with confirmation | ⬜ Todo |
 | 9.7 | Write orders list page with status badges | ⬜ Todo |
 | 9.8 | Write order detail page — full info + customer phone | ⬜ Todo |
 | 9.9 | Write one-click order status update | ⬜ Todo |
-| 9.10 | Make dashboard mobile responsive | ⬜ Todo |
+| 9.10 | Write store settings page — logo upload (Cloudinary), description, owner name | ⬜ Todo |
+| 9.11 | Make dashboard mobile responsive | ⬜ Todo |
 
 ---
 
@@ -228,7 +234,8 @@ This section tells you exactly where your input is required before I can proceed
 ### Phase 4 — Backend Seller & Products
 | Task | What I Need From You |
 |------|----------------------|
-| 4.8 | Test product endpoints in `/docs`, confirm they work correctly |
+| 4.7 | Provide your **Cloudinary Cloud Name**, **API Key**, and **API Secret** from your Cloudinary dashboard |
+| 4.9 | Test product endpoints in `/docs`, confirm they work correctly |
 
 ---
 
@@ -252,15 +259,15 @@ This section tells you exactly where your input is required before I can proceed
 | Task | What I Need From You |
 |------|----------------------|
 | 7.3 | Add test subdomains to your Windows hosts file (I will give you exact lines to add) — requires running Notepad as Administrator |
-| 7.9 | Test login on browser, confirm redirect to dashboard works |
+| 7.10 | Test login on browser, confirm redirect to dashboard works |
 
 ---
 
 ### Phase 8 — Frontend Customer Store
 | Task | What I Need From You |
 |------|----------------------|
-| 8.6 | Review store page on your mobile — confirm it looks good |
-| 8.7 | Test with a real order, confirm order confirmation page shows correct order ID |
+| 8.7 | Review store page on your mobile — confirm it looks good |
+| 8.8 | Test with a real order, confirm order confirmation page shows correct order ID |
 
 ---
 
@@ -268,7 +275,8 @@ This section tells you exactly where your input is required before I can proceed
 | Task | What I Need From You |
 |------|----------------------|
 | 9.2 | Review dashboard design — confirm layout feels clean and usable |
-| 9.10 | Review dashboard on mobile — confirm it is usable on phone |
+| 9.4 | Provide your **Cloudinary Upload Preset** (create one in Cloudinary settings → Upload → Upload Presets) |
+| 9.11 | Review dashboard on mobile — confirm it is usable on phone |
 
 ---
 
@@ -293,3 +301,6 @@ This section tells you exactly where your input is required before I can proceed
 | PostgreSQL installed (port 5432) | ✅ Done |
 | Bulk SMS BD account created | ❓ Confirm |
 | Bulk SMS BD API key obtained | ❓ Confirm |
+| Cloudinary account created | ❓ Confirm |
+| Cloudinary Cloud Name / API Key / Secret obtained | ❓ Confirm |
+| Cloudinary Upload Preset created (unsigned, for frontend uploads) | ❓ Confirm |
