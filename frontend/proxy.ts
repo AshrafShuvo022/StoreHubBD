@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-export default auth((req) => {
+export default async function proxy(req: NextRequest) {
   const host = req.headers.get("host") || ""
   const hostname = host.split(":")[0]
   const { nextUrl } = req
@@ -16,30 +16,26 @@ export default auth((req) => {
 
   // app.localhost — dashboard, requires auth
   if (subdomain === "app") {
-    const isLoggedIn = !!req.auth
+    const session = await auth()
+    const isLoggedIn = !!session
     const isAuthPage =
       nextUrl.pathname === "/login" || nextUrl.pathname === "/register"
 
     if (!isLoggedIn && !isAuthPage) {
-      const loginUrl = nextUrl.clone()
-      loginUrl.pathname = "/login"
-      return NextResponse.redirect(loginUrl)
+      return NextResponse.redirect(new URL("/login", req.url))
     }
 
     if (isLoggedIn && isAuthPage) {
-      const dashboardUrl = nextUrl.clone()
-      dashboardUrl.pathname = "/dashboard"
-      return NextResponse.redirect(dashboardUrl)
+      return NextResponse.redirect(new URL("/dashboard", req.url))
     }
 
     return NextResponse.next()
   }
 
   // {store}.localhost — rewrite to /{store}/* so Next.js dynamic route [store] picks it up
-  const url = nextUrl.clone()
-  url.pathname = `/${subdomain}${nextUrl.pathname === "/" ? "" : nextUrl.pathname}`
-  return NextResponse.rewrite(url)
-})
+  const newPath = `/${subdomain}${nextUrl.pathname === "/" ? "" : nextUrl.pathname}`
+  return NextResponse.rewrite(new URL(newPath, req.url))
+}
 
 export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico|api/auth).*)"],
