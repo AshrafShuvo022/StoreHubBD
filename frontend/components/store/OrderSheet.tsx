@@ -38,7 +38,7 @@ export default function OrderSheet({
     product.has_variants ? null : null
   )
 
-  const availableVariants = product.variants.filter((v) => v.is_available)
+  const availableVariants = (product.variants || []).filter((v) => v.is_available)
   const selectedVariant = availableVariants.find((v) => v.id === selectedVariantId)
   const displayPrice = selectedVariant ? selectedVariant.price : product.price
   const total = (displayPrice * quantity).toLocaleString()

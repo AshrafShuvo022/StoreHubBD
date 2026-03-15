@@ -35,7 +35,7 @@ export default function OrderFormInline({
   const [quantity, setQuantity] = useState(1)
   const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null)
 
-  const availableVariants = product.variants.filter((v) => v.is_available)
+  const availableVariants = (product.variants || []).filter((v) => v.is_available)
   const selectedVariant = availableVariants.find((v) => v.id === selectedVariantId)
   const displayPrice = selectedVariant ? selectedVariant.price : product.price
   const total = (displayPrice * quantity).toLocaleString()
