@@ -98,7 +98,7 @@ export default async function OrderDetailPage({
   if (!order) notFound()
 
   return (
-    <div className="p-5 sm:p-8 max-w-2xl">
+    <div className="p-6 sm:p-8 lg:p-10 max-w-3xl">
       {/* Header */}
       <div className="mb-6">
         <Link href="/orders" className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 mb-3">

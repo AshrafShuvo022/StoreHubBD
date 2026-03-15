@@ -20,7 +20,7 @@ export default async function ProductsPage() {
   const products = await getProducts(session.accessToken)
 
   return (
-    <div className="p-5 sm:p-8 max-w-5xl">
+    <div className="p-6 sm:p-8 lg:p-10 w-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">

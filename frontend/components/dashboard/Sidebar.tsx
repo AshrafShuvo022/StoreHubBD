@@ -63,7 +63,7 @@ export default function Sidebar({ storeName }: { storeName: string }) {
     .slice(0, 2)
 
   return (
-    <aside className="hidden lg:flex w-56 min-h-screen bg-white border-r border-gray-100 flex-col">
+    <aside className="hidden lg:flex w-64 min-h-screen bg-white border-r border-gray-100 flex-col">
       {/* Brand */}
       <div className="px-5 py-5 border-b border-gray-100">
         <div className="flex items-center gap-2.5">

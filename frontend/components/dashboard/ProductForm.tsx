@@ -129,7 +129,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-3xl">
+    <form onSubmit={handleSubmit} className="max-w-5xl">
       <div className="grid sm:grid-cols-2 gap-5">
         {/* Left Column */}
         <div className="space-y-4">

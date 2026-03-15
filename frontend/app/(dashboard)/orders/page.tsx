@@ -45,14 +45,14 @@ export default function OrdersPage() {
 
   if (loading) {
     return (
-      <div className="p-5 sm:p-8 flex items-center justify-center min-h-[300px]">
+      <div className="p-6 sm:p-8 lg:p-10 flex items-center justify-center min-h-[300px]">
         <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
 
   return (
-    <div className="p-5 sm:p-8 max-w-5xl">
+    <div className="p-6 sm:p-8 lg:p-10 w-full">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <h1 className="text-2xl font-bold text-gray-900">Orders</h1>

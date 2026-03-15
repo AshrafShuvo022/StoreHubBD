@@ -8,7 +8,7 @@ export default async function NewProductPage() {
   if (!session) redirect("/login")
 
   return (
-    <div className="p-5 sm:p-8">
+    <div className="p-6 sm:p-8 lg:p-10">
       <div className="mb-6">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
           <Link href="/products" className="hover:text-indigo-600 transition-colors">Products</Link>
