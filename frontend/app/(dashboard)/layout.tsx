@@ -1,7 +1,7 @@
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
-import { redirect } from "next/navigation"
 import Sidebar from "@/components/dashboard/Sidebar"
+import BottomNav from "@/components/dashboard/BottomNav"
 
 export default async function DashboardLayout({
   children,
@@ -10,15 +10,13 @@ export default async function DashboardLayout({
 }) {
   const session = await auth()
 
-  // Login/register pages don't need the sidebar
-  const isAuthPage = false // handled per-page
-
   return (
     <SessionProvider>
       {session ? (
         <div className="flex min-h-screen bg-gray-50">
           <Sidebar storeName={session.storeName} />
-          <main className="flex-1 overflow-auto">{children}</main>
+          <main className="flex-1 overflow-auto pb-16 lg:pb-0">{children}</main>
+          <BottomNav />
         </div>
       ) : (
         <>{children}</>

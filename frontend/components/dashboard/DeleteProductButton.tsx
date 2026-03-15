@@ -21,17 +21,17 @@ export default function DeleteProductButton({ productId }: { productId: string }
 
   if (confirming) {
     return (
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1.5">
         <button
           onClick={handleDelete}
           disabled={loading}
-          className="text-xs text-red-600 font-medium hover:underline disabled:opacity-50"
+          className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 px-2.5 py-1.5 rounded-lg hover:bg-red-100 disabled:opacity-50 transition-colors"
         >
-          {loading ? "..." : "Confirm"}
+          {loading ? "..." : "Delete"}
         </button>
         <button
           onClick={() => setConfirming(false)}
-          className="text-xs text-gray-400 hover:underline"
+          className="text-xs font-medium text-gray-500 px-2.5 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
         >
           Cancel
         </button>
@@ -42,7 +42,7 @@ export default function DeleteProductButton({ productId }: { productId: string }
   return (
     <button
       onClick={() => setConfirming(true)}
-      className="text-red-500 hover:underline text-xs"
+      className="text-xs font-semibold text-red-500 border border-red-100 bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded-lg transition-colors"
     >
       Delete
     </button>
