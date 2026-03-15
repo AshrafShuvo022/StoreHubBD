@@ -5,7 +5,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
       {/* Navbar */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-100 h-[60px] flex items-center px-4 sm:px-8">
-        <div className="max-w-5xl mx-auto w-full flex items-center justify-between">
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
@@ -14,7 +14,11 @@ export default function LandingPage() {
             </div>
             <span className="font-bold text-gray-900 tracking-tight">StoreHubBD</span>
           </div>
-          <nav className="flex items-center gap-3">
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#how-it-works" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition">How it works</a>
+            <a href="#features" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition">Features</a>
+          </nav>
+          <div className="flex items-center gap-3">
             <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">
               Sign In
             </Link>
@@ -24,58 +28,115 @@ export default function LandingPage() {
             >
               Start Free →
             </Link>
-          </nav>
+          </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-white">
         {/* Radial glow */}
         <div className="absolute inset-0 flex items-start justify-center pointer-events-none">
-          <div className="w-[600px] h-[400px] bg-indigo-100 rounded-full blur-3xl opacity-40 -translate-y-1/4" />
+          <div className="w-[800px] h-[500px] bg-indigo-100 rounded-full blur-3xl opacity-30 -translate-y-1/4" />
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-8 pt-20 pb-24 text-center">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-700 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-            Free for small stores · No credit card needed
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-16 pb-20">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+            {/* Left column */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-700 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                Free for small stores · No credit card needed
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight">
+                Your Facebook Store,
+                <br />
+                <span className="text-amber-500">Finally</span> Organized.
+              </h1>
+
+              <p className="mt-5 text-base sm:text-lg text-gray-500 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Turn DMs and comments into real orders. Give every customer a checkout link.
+                Get SMS alerts automatically. Track everything in one place.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                <Link
+                  href="/register"
+                  className="w-full sm:w-auto bg-indigo-600 text-white px-8 py-3.5 rounded-2xl font-bold text-base hover:bg-indigo-700 active:scale-[0.98] transition-all shadow-lg shadow-indigo-200"
+                >
+                  Create Your Free Store →
+                </Link>
+                <Link
+                  href="/login"
+                  className="w-full sm:w-auto bg-white border border-gray-200 text-gray-700 px-8 py-3.5 rounded-2xl font-semibold text-base hover:bg-gray-50 transition-all"
+                >
+                  Sign In
+                </Link>
+              </div>
+
+              <p className="mt-4 text-xs text-gray-400">
+                No credit card. Free forever for small stores.
+              </p>
+            </div>
+
+            {/* Right column — Browser mockup */}
+            <div className="hidden lg:flex items-center justify-center mt-0">
+              <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+                {/* Browser chrome bar */}
+                <div className="bg-gray-100 border-b border-gray-200 px-4 py-2.5 flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-400"/>
+                    <div className="w-3 h-3 rounded-full bg-amber-400"/>
+                    <div className="w-3 h-3 rounded-full bg-green-400"/>
+                  </div>
+                  <div className="flex-1 bg-white rounded-lg px-3 py-1 text-xs text-gray-400 text-center">
+                    app.shopupbd.com/dashboard
+                  </div>
+                </div>
+                {/* Fake dashboard content */}
+                <div className="bg-gray-50 p-4">
+                  {/* Stats row */}
+                  <div className="grid grid-cols-4 gap-2 mb-3">
+                    {[{n:"24",l:"Total"},{n:"8",l:"Pending"},{n:"12",l:"Shipped"},{n:"4",l:"Delivered"}].map(s => (
+                      <div key={s.l} className="bg-white rounded-lg p-2 border border-gray-100">
+                        <p className="text-lg font-extrabold text-gray-900">{s.n}</p>
+                        <p className="text-[10px] text-gray-400 font-medium">{s.l}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Fake orders list */}
+                  <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+                    <div className="px-3 py-2 border-b border-gray-100 flex justify-between items-center">
+                      <span className="text-xs font-bold text-gray-700">Recent Orders</span>
+                      <span className="text-[10px] text-indigo-600">View all</span>
+                    </div>
+                    {[
+                      {code:"ARJ-0042",name:"Rahim Uddin",amount:"৳850",status:"pending",statusColor:"bg-amber-50 text-amber-700"},
+                      {code:"ARJ-0041",name:"Fatema Khatun",amount:"৳1,200",status:"shipped",statusColor:"bg-blue-50 text-blue-700"},
+                      {code:"ARJ-0040",name:"Karim Ahmed",amount:"৳600",status:"delivered",statusColor:"bg-emerald-50 text-emerald-700"},
+                    ].map(o => (
+                      <div key={o.code} className="px-3 py-2 flex items-center justify-between border-b border-gray-50 last:border-0">
+                        <div>
+                          <span className="text-[11px] font-mono font-bold text-indigo-700">{o.code}</span>
+                          <p className="text-[10px] text-gray-500">{o.name}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-bold text-gray-700">{o.amount}</span>
+                          <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full ${o.statusColor}`}>{o.status}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-[56px] font-extrabold text-gray-900 leading-tight tracking-tight">
-            Your Facebook Store,
-            <br />
-            <span className="text-amber-500">Finally</span> Organized.
-          </h1>
-
-          <p className="mt-5 text-base sm:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Turn DMs and comments into real orders. Give every customer a checkout link.
-            Get SMS alerts automatically. Track everything in one place.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              href="/register"
-              className="w-full sm:w-auto bg-indigo-600 text-white px-8 py-3.5 rounded-2xl font-bold text-base hover:bg-indigo-700 active:scale-[0.98] transition-all shadow-lg shadow-indigo-200"
-            >
-              Create Your Free Store →
-            </Link>
-            <Link
-              href="/login"
-              className="w-full sm:w-auto bg-white border border-gray-200 text-gray-700 px-8 py-3.5 rounded-2xl font-semibold text-base hover:bg-gray-50 transition-all"
-            >
-              Sign In
-            </Link>
-          </div>
-
-          <p className="mt-4 text-xs text-gray-400">
-            No credit card. Free forever for small stores.
-          </p>
         </div>
       </section>
 
       {/* Social Proof Strip */}
       <section className="bg-gray-50 border-y border-gray-100 py-4">
-        <div className="max-w-4xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center">
           {/* Avatars */}
           <div className="flex -space-x-2">
             {["#4F46E5", "#7C3AED", "#DB2777", "#D97706", "#059669"].map((color, i) => (
@@ -99,13 +160,13 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 px-4 sm:px-8">
-        <div className="max-w-4xl mx-auto text-center mb-12">
+      <section id="how-it-works" className="py-20 px-4 sm:px-8">
+        <div className="max-w-7xl mx-auto text-center mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Get started in minutes</h2>
           <p className="text-gray-500 mt-2">Three simple steps to your professional store</p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-6 sm:gap-4 relative">
+        <div className="max-w-7xl mx-auto grid sm:grid-cols-3 gap-6 sm:gap-8 relative">
           {[
             {
               step: "01",
@@ -150,7 +211,7 @@ export default function LandingPage() {
                   →
                 </div>
               )}
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center">
+              <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
                 <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   {item.icon}
                 </div>
@@ -164,14 +225,14 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="bg-gray-50 py-20 px-4 sm:px-8">
-        <div className="max-w-4xl mx-auto">
+      <section id="features" className="bg-gray-50 py-20 px-4 sm:px-8">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Everything you need</h2>
             <p className="text-gray-500 mt-2">Built specifically for Bangladeshi Facebook sellers</p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-3 gap-6">
             {[
               {
                 title: "Your own store link",
@@ -189,7 +250,7 @@ export default function LandingPage() {
                 icon: "📦",
               },
             ].map((f) => (
-              <div key={f.title} className="bg-white rounded-2xl border border-gray-200 p-6">
+              <div key={f.title} className="bg-white rounded-2xl border border-gray-200 p-8">
                 <div className="text-3xl mb-3">{f.icon}</div>
                 <h3 className="font-bold text-gray-900 mb-2">{f.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
@@ -201,16 +262,16 @@ export default function LandingPage() {
 
       {/* CTA Banner */}
       <section className="px-4 sm:px-8 py-16">
-        <div className="max-w-4xl mx-auto bg-indigo-600 rounded-3xl py-14 px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+        <div className="max-w-7xl mx-auto bg-indigo-600 rounded-3xl py-16 px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white">
             Start your free store today
           </h2>
-          <p className="text-indigo-200 mt-2 text-sm">
-            Join hundreds of sellers already growing their business.
+          <p className="text-indigo-200 mt-3 text-sm sm:text-base max-w-xl mx-auto">
+            Join hundreds of sellers already growing their business with StoreHubBD.
           </p>
           <Link
             href="/register"
-            className="mt-6 inline-block bg-white text-indigo-700 px-8 py-3.5 rounded-2xl font-bold text-base hover:bg-indigo-50 active:scale-[0.98] transition-all"
+            className="mt-8 inline-block bg-white text-indigo-700 px-8 py-3.5 rounded-2xl font-bold text-base hover:bg-indigo-50 active:scale-[0.98] transition-all"
           >
             Get Started Free →
           </Link>
@@ -218,10 +279,24 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 text-center border-t border-gray-100">
-        <p className="text-xs text-gray-400">
-          © {new Date().getFullYear()} StoreHubBD · Made for Bangladeshi sellers
-        </p>
+      <footer className="py-10 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="w-6 h-6 bg-indigo-600 rounded-md flex items-center justify-center">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
+              </svg>
+            </div>
+            <span className="text-sm font-bold text-gray-700">StoreHubBD</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <Link href="/login" className="text-xs text-gray-400 hover:text-gray-600 transition">Sign In</Link>
+            <Link href="/register" className="text-xs text-gray-400 hover:text-gray-600 transition">Register</Link>
+          </div>
+          <p className="text-xs text-gray-400">
+            © {new Date().getFullYear()} StoreHubBD · Made for Bangladeshi sellers
+          </p>
+        </div>
       </footer>
     </div>
   )

@@ -28,12 +28,13 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-screen-sm mx-auto">
-        {/* Cover Banner */}
-        <div className="h-24 bg-gradient-to-br from-indigo-600 to-indigo-500 relative" />
+      {/* Cover Banner — taller on desktop */}
+      <div className="h-32 lg:h-48 bg-gradient-to-br from-indigo-600 to-indigo-500 relative" />
 
+      {/* Content area — max-w-6xl on desktop */}
+      <div className="max-w-6xl mx-auto px-4 lg:px-8">
         {/* Store Identity */}
-        <div className="px-4 pb-4">
+        <div className="pb-4">
           <div className="flex items-end gap-4 -mt-10 mb-4">
             {seller.logo_url ? (
               <Image
@@ -72,7 +73,7 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gray-200 mx-4 mb-4" />
+        <div className="h-px bg-gray-200 mb-4" />
 
         {/* Product Grid with Search */}
         <StoreGrid products={availableProducts} />

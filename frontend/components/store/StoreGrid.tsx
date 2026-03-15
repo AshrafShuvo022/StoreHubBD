@@ -23,7 +23,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
   return (
     <>
       {/* Search */}
-      <div className="px-4 pb-4">
+      <div className="pb-4">
         <div className="relative">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -51,13 +51,13 @@ export default function StoreGrid({ products }: { products: Product[] }) {
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="px-4 py-16 text-center">
+        <div className="py-16 text-center">
           <p className="text-gray-400 text-sm">
             {query ? `No products match "${query}"` : "No products yet."}
           </p>
         </div>
       ) : (
-        <div className="px-4 grid grid-cols-2 gap-3 pb-20">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 pb-20">
           {filtered.map((product, i) => (
             <Link
               key={product.id}
