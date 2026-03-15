@@ -173,12 +173,17 @@ export default async function OrderDetailPage({
         <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Items</h2>
         <div className="space-y-2.5">
           {order.items.map((item: any) => (
-            <div key={item.id} className="flex justify-between items-center text-sm">
-              <span className="text-gray-700">
-                {item.product_name}{" "}
-                <span className="text-gray-400">× {item.quantity}</span>
-              </span>
-              <span className="font-semibold text-gray-900">৳{Number(item.subtotal).toLocaleString()}</span>
+            <div key={item.id} className="flex justify-between items-start text-sm gap-4">
+              <div>
+                <span className="text-gray-700 font-medium">{item.product_name}</span>
+                {item.variant_label && (
+                  <span className="ml-2 text-xs bg-indigo-50 text-indigo-600 font-semibold px-2 py-0.5 rounded-full">
+                    {item.variant_label}
+                  </span>
+                )}
+                <span className="text-gray-400 ml-1">× {item.quantity}</span>
+              </div>
+              <span className="font-semibold text-gray-900 flex-shrink-0">৳{Number(item.subtotal).toLocaleString()}</span>
             </div>
           ))}
           <div className="border-t border-gray-100 pt-3 flex justify-between items-center font-bold">

@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.dependencies import get_current_seller
 from app.models.order import Order, OrderItem
-from app.models.product import Product
+from app.models.product import Product, ProductVariant
 from app.models.seller import Seller
 from app.schemas.order import OrderCreate, OrderOut, OrderStatusUpdate
 from app.services.order_service import generate_order_code, notify_new_order, notify_status_update
@@ -29,7 +29,6 @@ def place_order(store_name: str, payload: OrderCreate, db: Session = Depends(get
     if not payload.items:
         raise HTTPException(status_code=400, detail="Order must have at least one item")
 
-    # Validate products and build order items
     order_items = []
     total = 0.0
 
@@ -48,13 +47,41 @@ def place_order(store_name: str, payload: OrderCreate, db: Session = Depends(get
         if item.quantity < 1:
             raise HTTPException(status_code=400, detail="Quantity must be at least 1")
 
-        subtotal = float(product.price) * item.quantity
+        # Variant handling
+        variant_id = None
+        variant_label = None
+        item_price = float(product.price)
+
+        if product.has_variants:
+            if not item.variant_id:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Product '{product.name}' requires a variant selection"
+                )
+            variant = (
+                db.query(ProductVariant)
+                .filter(
+                    ProductVariant.id == item.variant_id,
+                    ProductVariant.product_id == product.id,
+                    ProductVariant.is_available == True,
+                )
+                .first()
+            )
+            if not variant:
+                raise HTTPException(status_code=404, detail="Selected variant not found or unavailable")
+            variant_id = variant.id
+            variant_label = variant.label
+            item_price = float(variant.price)
+
+        subtotal = item_price * item.quantity
         total += subtotal
         order_items.append(
             OrderItem(
                 product_id=product.id,
+                variant_id=variant_id,
                 product_name=product.name,
-                product_price=float(product.price),
+                product_price=item_price,
+                variant_label=variant_label,
                 quantity=item.quantity,
                 subtotal=subtotal,
             )

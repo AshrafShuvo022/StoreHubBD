@@ -10,6 +10,7 @@ interface Product {
   price: number
   image_url: string | null
   is_available: boolean
+  has_variants: boolean
 }
 
 export default function StoreGrid({ products }: { products: Product[] }) {
@@ -87,7 +88,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
                 <p className="text-sm font-semibold text-gray-800 truncate">{product.name}</p>
                 <div className="flex items-center justify-between mt-1.5">
                   <p className="text-indigo-600 font-bold text-sm">
-                    ৳{Number(product.price).toLocaleString()}
+                    {product.has_variants ? "From " : ""}৳{Number(product.price).toLocaleString()}
                   </p>
                   <span className="text-[10px] font-semibold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-full">
                     Order →

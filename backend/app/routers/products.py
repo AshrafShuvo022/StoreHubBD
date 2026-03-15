@@ -5,11 +5,33 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.dependencies import get_current_seller
-from app.models.product import Product
+from app.models.product import Product, ProductVariant
 from app.models.seller import Seller
 from app.schemas.product import ProductCreate, ProductOut, ProductUpdate
 
 router = APIRouter(prefix="/api/products", tags=["products"])
+
+
+def _sync_variants(db: Session, product: Product, variants_data: list) -> None:
+    """Replace all variants for a product with new data."""
+    for v in product.variants:
+        db.delete(v)
+    db.flush()
+
+    for i, v in enumerate(variants_data):
+        db.add(ProductVariant(
+            product_id=product.id,
+            label=v.label,
+            price=v.price,
+            is_available=v.is_available,
+            sort_order=i,
+        ))
+
+
+def _set_base_price(product: Product, variants_data: list) -> None:
+    """When variants exist, set base price to the minimum variant price."""
+    if variants_data:
+        product.price = min(v.price for v in variants_data)
 
 
 @router.get("", response_model=list[ProductOut])
@@ -31,8 +53,25 @@ def create_product(
     db: Session = Depends(get_db),
     current_seller: Seller = Depends(get_current_seller),
 ):
-    product = Product(**payload.model_dump(), seller_id=current_seller.id)
+    data = payload.model_dump(exclude={"variants"})
+    product = Product(**data, seller_id=current_seller.id)
+
+    if payload.has_variants and payload.variants:
+        _set_base_price(product, payload.variants)
+
     db.add(product)
+    db.flush()
+
+    if payload.has_variants and payload.variants:
+        for i, v in enumerate(payload.variants):
+            db.add(ProductVariant(
+                product_id=product.id,
+                label=v.label,
+                price=v.price,
+                is_available=v.is_available,
+                sort_order=i,
+            ))
+
     db.commit()
     db.refresh(product)
     return product
@@ -53,8 +92,15 @@ def update_product(
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    for field, value in payload.model_dump(exclude_unset=True).items():
+    update_data = payload.model_dump(exclude_unset=True, exclude={"variants"})
+    for field, value in update_data.items():
         setattr(product, field, value)
+
+    if payload.variants is not None:
+        _sync_variants(db, product, payload.variants)
+        if product.has_variants and payload.variants:
+            _set_base_price(product, payload.variants)
+
     db.commit()
     db.refresh(product)
     return product

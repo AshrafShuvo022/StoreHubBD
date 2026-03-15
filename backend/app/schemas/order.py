@@ -9,6 +9,7 @@ from app.models.order import OrderStatus
 class OrderItemCreate(BaseModel):
     product_id: uuid.UUID
     quantity: int
+    variant_id: uuid.UUID | None = None
 
 
 class OrderCreate(BaseModel):
@@ -24,6 +25,8 @@ class OrderItemOut(BaseModel):
     product_id: uuid.UUID | None
     product_name: str
     product_price: float
+    variant_id: uuid.UUID | None
+    variant_label: str | None
     quantity: int
     subtotal: float
 
