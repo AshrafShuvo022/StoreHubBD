@@ -55,12 +55,12 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
       {/* Summary row */}
       <div className="flex items-center gap-6 mb-4">
         <div>
-          <p className="text-xs text-gray-500 font-medium">30-day Revenue</p>
-          <p className="text-xl font-extrabold text-gray-900">৳{totalRevenue.toLocaleString()}</p>
+          <p className="text-xs text-gray-400">30-day Revenue</p>
+          <p className="text-sm font-semibold text-gray-800">৳{totalRevenue.toLocaleString()}</p>
         </div>
         <div>
-          <p className="text-xs text-gray-500 font-medium">30-day Orders</p>
-          <p className="text-xl font-extrabold text-gray-900">{totalOrders}</p>
+          <p className="text-xs text-gray-400">30-day Orders</p>
+          <p className="text-sm font-semibold text-gray-800">{totalOrders}</p>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
               <g key={i}>
                 <line x1={0} y1={t.y} x2={CW} y2={t.y} stroke="#F3F4F6" strokeWidth="1" />
                 {t.value > 0 && (
-                  <text x={-8} y={t.y + 4} textAnchor="end" fontSize="9" fill="#9CA3AF">
+                  <text x={-8} y={t.y + 4} textAnchor="end" fontSize="7" fill="#9CA3AF">
                     {formatRevenue(t.value)}
                   </text>
                 )}
@@ -140,10 +140,10 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
                 {/* Tooltip */}
                 <g transform={`translate(${Math.min(xScale(hovered) + 8, CW - 100)}, ${Math.max(yScale(data[hovered].revenue) - 36, 2)})`}>
                   <rect rx="6" ry="6" width="96" height="32" fill="#1E1B4B" />
-                  <text x="8" y="13" fontSize="9" fill="#A5B4FC" fontWeight="600">
+                  <text x="8" y="13" fontSize="7.5" fill="#A5B4FC" fontWeight="600">
                     {formatLabel(data[hovered].date)}
                   </text>
-                  <text x="8" y="25" fontSize="10" fill="white" fontWeight="700">
+                  <text x="8" y="25" fontSize="8.5" fill="white" fontWeight="700">
                     ৳{data[hovered].revenue.toLocaleString()} · {data[hovered].orders} orders
                   </text>
                 </g>
@@ -152,7 +152,7 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
 
             {/* X-axis labels */}
             {xLabelIdxs.map((i) => (
-              <text key={i} x={xScale(i)} y={CH + 18} textAnchor="middle" fontSize="9" fill="#9CA3AF">
+              <text key={i} x={xScale(i)} y={CH + 18} textAnchor="middle" fontSize="7" fill="#9CA3AF">
                 {formatLabel(data[i].date)}
               </text>
             ))}

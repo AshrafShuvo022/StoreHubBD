@@ -46,7 +46,15 @@ export default async function DashboardPage() {
   if (!session) redirect("/login")
 
   const analytics = await getAnalytics(session.accessToken)
-  if (!analytics) redirect("/login")
+
+  if (!analytics) {
+    return (
+      <div className="p-6 sm:p-8 lg:p-10 flex flex-col items-center justify-center min-h-[60vh] gap-4">
+        <p className="text-gray-500 text-sm">Could not load analytics. Your session may have expired.</p>
+        <a href="/login" className="text-sm font-semibold text-indigo-600 hover:underline">Sign in again →</a>
+      </div>
+    )
+  }
 
   const {
     total_revenue,
