@@ -57,10 +57,10 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel — desktop only */}
-      <div className="hidden md:flex md:w-[45%] bg-gradient-to-br from-indigo-700 to-indigo-900 flex-col justify-between p-10">
+      <div className="hidden md:flex md:w-[45%] flex-col justify-between p-10" style={{ background: "#131921" }}>
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+          <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: "#FF9900" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#131921">
               <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
             </svg>
           </div>
@@ -73,10 +73,10 @@ export default function RegisterPage() {
             <br />
             ready in 60 seconds.
           </h2>
-          <p className="text-indigo-200 mt-3 text-sm leading-relaxed">
+          <p className="text-gray-400 mt-3 text-sm leading-relaxed">
             Stop taking orders over DMs. Give every customer a real checkout link.
           </p>
-          <div className="mt-8 space-y-3 text-sm text-indigo-100">
+          <div className="mt-8 space-y-3 text-sm text-gray-400">
             {[
               "✓  Your own store link",
               "✓  SMS alerts on every order",
@@ -88,7 +88,7 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <p className="text-indigo-300 text-sm">
+        <p className="text-gray-500 text-sm">
           Already have an account?{" "}
           <Link href="/login" className="text-white font-semibold hover:underline">
             Sign in →
@@ -101,8 +101,8 @@ export default function RegisterPage() {
         <div className="w-full max-w-sm">
           {/* Mobile brand */}
           <div className="flex items-center gap-2.5 mb-8 md:hidden">
-            <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+            <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: "#FF9900" }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#131921">
                 <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
               </svg>
             </div>
@@ -122,7 +122,7 @@ export default function RegisterPage() {
             {/* Store Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Store Name</label>
-              <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
+              <div className="flex items-stretch border border-gray-300 rounded overflow-hidden focus-within:ring-2 focus-within:ring-[#FF9900] focus-within:border-[#FF9900] transition-all">
                 <input
                   name="store_name"
                   type="text"
@@ -133,12 +133,12 @@ export default function RegisterPage() {
                   className="flex-1 px-4 py-2.5 text-sm outline-none bg-white"
                   placeholder="arjha"
                 />
-                <span className="px-3 py-2.5 bg-indigo-50 text-indigo-600 text-sm font-medium border-l border-indigo-100 flex-shrink-0">
+                <span className="px-3 py-2.5 bg-gray-50 text-gray-500 text-sm font-medium border-l border-gray-200 flex-shrink-0">
                   .storehubbd.com
                 </span>
               </div>
               {storeSlug && (
-                <p className="text-xs text-indigo-600 mt-1.5 animate-fade-in">
+                <p className="text-xs mt-1.5 animate-fade-in" style={{ color: "#007185" }}>
                   Your store will be at:{" "}
                   <span className="font-semibold">{storeSlug}.storehubbd.com</span>
                 </p>
@@ -155,7 +155,7 @@ export default function RegisterPage() {
                 name="owner_name"
                 type="text"
                 required
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
                 placeholder="Rahim Uddin"
               />
             </div>
@@ -167,7 +167,7 @@ export default function RegisterPage() {
                 name="email"
                 type="email"
                 required
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
                 placeholder="you@example.com"
               />
             </div>
@@ -177,7 +177,7 @@ export default function RegisterPage() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Phone <span className="text-gray-400 font-normal">(for SMS alerts)</span>
               </label>
-              <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
+              <div className="flex items-stretch border border-gray-300 rounded overflow-hidden focus-within:ring-2 focus-within:ring-[#FF9900] focus-within:border-[#FF9900] transition-all">
                 <span className="px-3 py-2.5 bg-gray-50 text-gray-500 text-sm border-r border-gray-200 flex-shrink-0">
                   +880
                 </span>
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                   type={showPassword ? "text" : "password"}
                   required
                   minLength={6}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all pr-11"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all pr-11"
                   placeholder="••••••••"
                 />
                 <button
@@ -225,7 +225,8 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-indigo-700 disabled:opacity-50 active:scale-[0.98] transition-all mt-2"
+              className="w-full py-3 rounded font-bold text-sm text-gray-900 hover:brightness-95 disabled:opacity-50 active:scale-[0.98] transition-all mt-2"
+              style={{ background: "#FFD814", border: "1px solid #FCD200" }}
             >
               {loading ? "Creating store..." : "Create My Store →"}
             </button>
@@ -233,7 +234,7 @@ export default function RegisterPage() {
 
           <p className="text-center text-sm text-gray-500 mt-6">
             Already have an account?{" "}
-            <Link href="/login" className="text-indigo-600 font-semibold hover:underline">
+            <Link href="/login" className="font-semibold hover:underline" style={{ color: "#007185" }}>
               Sign in
             </Link>
           </p>

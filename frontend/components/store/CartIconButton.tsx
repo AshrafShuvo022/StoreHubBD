@@ -7,7 +7,7 @@ export default function CartIconButton() {
   return (
     <button
       onClick={openCart}
-      className="relative p-1.5 text-slate-400 hover:text-white transition"
+      className="relative p-1.5 text-gray-300 hover:text-white transition"
       aria-label="Open cart"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -15,7 +15,7 @@ export default function CartIconButton() {
         <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61H19a2 2 0 001.98-1.68L23 6H6" />
       </svg>
       {count > 0 && (
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-indigo-600 text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+        <span className="absolute -top-1 -right-1 w-4 h-4 text-white text-[9px] font-bold rounded-full flex items-center justify-center" style={{ background: "#FF9900" }}>
           {count > 9 ? "9+" : count}
         </span>
       )}

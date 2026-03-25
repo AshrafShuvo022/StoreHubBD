@@ -29,11 +29,11 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
   const availableProducts = products.filter((p: any) => p.is_available !== false)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: "#f0f2f2" }}>
 
-      {/* Sticky top nav — dark */}
-      <div className="sticky top-0 z-20 bg-slate-950/95 backdrop-blur-sm h-14 flex items-center px-4">
-        <div className="max-w-5xl mx-auto w-full flex items-center justify-between">
+      {/* Top nav */}
+      <div className="sticky top-0 z-20" style={{ background: "#131921" }}>
+        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             {seller.logo_url ? (
               <Image
@@ -41,10 +41,10 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
                 alt={seller.store_name}
                 width={30}
                 height={30}
-                className="w-7 h-7 rounded-lg object-cover"
+                className="w-7 h-7 rounded-md object-cover"
               />
             ) : (
-              <div className="w-7 h-7 rounded-lg bg-indigo-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+              <div className="w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style={{ background: "#FF9900" }}>
                 {seller.store_name[0].toUpperCase()}
               </div>
             )}
@@ -56,39 +56,42 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
         </div>
       </div>
 
-      {/* Store header */}
-      <div className="bg-slate-950 border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-4 lg:px-6 py-8 lg:py-10">
-          <div className="flex items-center gap-5">
+      {/* Store info banner */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-5 lg:py-6">
+          <div className="flex items-center gap-4">
             {seller.logo_url ? (
               <Image
                 src={seller.logo_url}
                 alt={seller.store_name}
-                width={72}
-                height={72}
-                className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl object-cover ring-2 ring-white/10 flex-shrink-0"
+                width={64}
+                height={64}
+                className="w-14 h-14 lg:w-16 lg:h-16 rounded-lg object-cover flex-shrink-0 border border-gray-200"
               />
             ) : (
-              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-indigo-500 flex items-center justify-center text-white text-2xl lg:text-3xl font-bold flex-shrink-0">
+              <div
+                className="w-14 h-14 lg:w-16 lg:h-16 rounded-lg flex items-center justify-center text-white text-xl lg:text-2xl font-bold flex-shrink-0"
+                style={{ background: "#131921" }}
+              >
                 {seller.store_name[0].toUpperCase()}
               </div>
             )}
             <div className="min-w-0">
-              <h1 className="text-xl lg:text-2xl font-bold text-white capitalize">
+              <h1 className="text-lg lg:text-xl font-bold text-gray-900 capitalize">
                 {seller.store_name}
               </h1>
               {seller.description && (
-                <p className="text-slate-400 text-sm mt-1 leading-relaxed max-w-md line-clamp-2">
+                <p className="text-gray-500 text-sm mt-0.5 line-clamp-1 max-w-lg">
                   {seller.description}
                 </p>
               )}
-              <div className="flex items-center gap-2 mt-3">
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">
-                  {availableProducts.length} {availableProducts.length === 1 ? "product" : "products"}
+              <div className="flex items-center gap-3 mt-2">
+                <span className="text-xs text-gray-500">
+                  {availableProducts.length} {availableProducts.length === 1 ? "product" : "products"} available
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  Open
+                <span className="flex items-center gap-1 text-xs font-medium text-green-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                  Open Now
                 </span>
               </div>
             </div>
@@ -97,15 +100,15 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
       </div>
 
       {/* Products */}
-      <div className="max-w-5xl mx-auto px-4 lg:px-6 py-6">
+      <div className="max-w-6xl mx-auto px-4 lg:px-6 py-4">
         <StoreGrid products={availableProducts} />
       </div>
 
       {/* Footer */}
-      <div className="py-8 text-center border-t border-gray-100 mt-6">
+      <div className="py-8 text-center border-t border-gray-200 bg-white mt-4">
         <a
           href="http://localhost:3000/register"
-          className="text-xs text-gray-400 hover:text-indigo-500 transition-colors"
+          className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
         >
           Powered by StoreHubBD · Create your free store →
         </a>

@@ -57,11 +57,9 @@ export default function OrderFormInline({
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-      <h2 className="text-xl font-bold text-gray-900 mb-6">Add to Cart</h2>
+    <div className="bg-white rounded-lg border border-gray-200 p-5">
 
-      <div className="space-y-5">
-        {/* Variant selector */}
+      <div className="space-y-4">
         {product.has_variants && availableVariants.length > 0 && (
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -73,14 +71,14 @@ export default function OrderFormInline({
                   key={v.id}
                   type="button"
                   onClick={() => setSelectedVariantId(v.id)}
-                  className={`px-3.5 py-2 rounded-xl border text-sm font-medium transition-all ${
+                  className={`px-3 py-1.5 rounded border text-sm font-medium transition-all ${
                     selectedVariantId === v.id
-                      ? "bg-indigo-600 text-white border-indigo-600"
-                      : "bg-white text-gray-700 border-gray-200 hover:border-indigo-300"
+                      ? "border-[#FF9900] bg-orange-50 text-gray-900"
+                      : "bg-white text-gray-700 border-gray-300 hover:border-gray-400"
                   }`}
                 >
                   {v.label}
-                  <span className={`ml-1.5 text-xs ${selectedVariantId === v.id ? "text-indigo-200" : "text-gray-400"}`}>
+                  <span className="ml-1.5 text-xs text-gray-400">
                     ৳{Number(v.price).toLocaleString()}
                   </span>
                 </button>
@@ -89,38 +87,44 @@ export default function OrderFormInline({
           </div>
         )}
 
-        {/* Quantity */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1.5">Quantity</label>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition text-xl font-light"
+              className="w-9 h-9 rounded border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition text-lg"
             >−</button>
-            <span className="w-8 text-center font-bold text-lg">{quantity}</span>
+            <span className="w-8 text-center font-bold text-gray-900">{quantity}</span>
             <button
               type="button"
               onClick={() => setQuantity((q) => q + 1)}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition text-xl font-light"
+              className="w-9 h-9 rounded border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition text-lg"
             >+</button>
           </div>
         </div>
 
         {error && (
-          <p className="text-sm text-red-600 bg-red-50 border border-red-100 px-4 py-2.5 rounded-xl">{error}</p>
+          <p className="text-sm text-red-600 bg-red-50 border border-red-100 px-4 py-2.5 rounded">
+            {error}
+          </p>
         )}
 
         <div className="border-t border-gray-100 pt-4">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-gray-500">Subtotal</span>
-            <span className="text-2xl font-bold text-indigo-600">৳{(displayPrice * quantity).toLocaleString()}</span>
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm text-gray-600">
+              Subtotal ({quantity} {quantity === 1 ? "item" : "items"})
+            </span>
+            <span className="text-xl font-bold" style={{ color: "#B12704" }}>
+              ৳{(displayPrice * quantity).toLocaleString()}
+            </span>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-2">
             <button
               type="button"
               onClick={handleAddToCart}
-              className="flex-1 bg-indigo-600 text-white py-3.5 rounded-2xl font-bold text-base hover:bg-indigo-700 active:scale-[0.98] transition-all"
+              className="flex-1 py-2.5 rounded font-bold text-sm text-gray-900 hover:brightness-95 active:scale-[0.98] transition-all"
+              style={{ background: "#FFD814", border: "1px solid #FCD200" }}
             >
               {added ? "Added to Cart ✓" : "Add to Cart"}
             </button>
@@ -128,9 +132,9 @@ export default function OrderFormInline({
               type="button"
               onClick={openCart}
               aria-label="View cart"
-              className="px-4 py-3.5 rounded-2xl border border-gray-200 text-gray-600 hover:bg-gray-50 transition"
+              className="px-3.5 py-2.5 rounded border border-gray-300 text-gray-600 hover:bg-gray-50 transition"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61H19a2 2 0 001.98-1.68L23 6H6" />
               </svg>

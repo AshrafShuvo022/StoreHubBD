@@ -47,10 +47,10 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel — desktop only */}
-      <div className="hidden md:flex md:w-[45%] bg-gradient-to-br from-indigo-700 to-indigo-900 flex-col justify-between p-10">
+      <div className="hidden md:flex md:w-[45%] flex-col justify-between p-10" style={{ background: "#131921" }}>
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+          <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: "#FF9900" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#131921">
               <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
             </svg>
           </div>
@@ -63,16 +63,16 @@ export default function LoginPage() {
             <br />
             Your orders are waiting.
           </h2>
-          <p className="text-indigo-200 mt-3 text-sm">
+          <p className="text-gray-400 mt-3 text-sm">
             Manage your store, track orders, and keep customers happy.
           </p>
 
           {/* Static status badges */}
           <div className="mt-8 space-y-2">
             {[
-              { label: "ARJ-0042 · Pending", color: "bg-amber-400/20 text-amber-200" },
-              { label: "ARJ-0041 · Delivered", color: "bg-green-400/20 text-green-200" },
-              { label: "ARJ-0040 · Shipped", color: "bg-indigo-300/20 text-indigo-100" },
+              { label: "ARJ-0042 · Pending", color: "bg-white/5 text-yellow-300" },
+              { label: "ARJ-0041 · Delivered", color: "bg-white/5 text-green-300" },
+              { label: "ARJ-0040 · Shipped", color: "bg-white/5 text-blue-300" },
             ].map((b) => (
               <div
                 key={b.label}
@@ -85,7 +85,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <p className="text-indigo-300 text-sm">
+        <p className="text-gray-500 text-sm">
           No account?{" "}
           <Link href="/register" className="text-white font-semibold hover:underline">
             Create your free store →
@@ -98,8 +98,8 @@ export default function LoginPage() {
         <div className={`w-full max-w-sm ${shake ? "animate-shake" : ""}`}>
           {/* Mobile brand */}
           <div className="flex items-center gap-2.5 mb-8 md:hidden">
-            <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+            <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: "#FF9900" }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#131921">
                 <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
               </svg>
             </div>
@@ -122,7 +122,7 @@ export default function LoginPage() {
                 name="email"
                 type="email"
                 required
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
+                className="w-full px-4 py-2.5 border border-gray-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
                 placeholder="you@example.com"
               />
             </div>
@@ -130,7 +130,7 @@ export default function LoginPage() {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="text-sm font-medium text-gray-700">Password</label>
-                <button type="button" className="text-xs text-indigo-500 hover:text-indigo-700 font-medium">
+                <button type="button" className="text-xs font-medium" style={{ color: "#007185" }}>
                   Forgot password?
                 </button>
               </div>
@@ -139,7 +139,7 @@ export default function LoginPage() {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   required
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all pr-11"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all pr-11"
                   placeholder="••••••••"
                 />
                 <button
@@ -165,7 +165,8 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-indigo-700 disabled:opacity-50 active:scale-[0.98] transition-all mt-2"
+              className="w-full py-3 rounded font-bold text-sm text-gray-900 hover:brightness-95 disabled:opacity-50 active:scale-[0.98] transition-all mt-2"
+              style={{ background: "#FFD814", border: "1px solid #FCD200" }}
             >
               {loading ? "Signing in..." : "Sign In"}
             </button>
@@ -173,7 +174,7 @@ export default function LoginPage() {
 
           <p className="text-center text-sm text-gray-500 mt-6">
             No account?{" "}
-            <Link href="/register" className="text-indigo-600 font-semibold hover:underline">
+            <Link href="/register" className="font-semibold hover:underline" style={{ color: "#007185" }}>
               Create your free store →
             </Link>
           </p>
