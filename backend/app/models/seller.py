@@ -16,6 +16,7 @@ class Seller(Base):
         UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
     )
     store_name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    display_name: Mapped[str | None] = mapped_column(String(150), nullable=True)
     owner_name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(150), unique=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String, nullable=False)

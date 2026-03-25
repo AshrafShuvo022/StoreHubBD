@@ -26,6 +26,7 @@ def register(payload: SellerRegister, db: Session = Depends(get_db)):
 
     seller = Seller(
         store_name=payload.store_name.lower().strip(),
+        display_name=payload.display_name.strip() if payload.display_name else None,
         owner_name=payload.owner_name,
         email=payload.email,
         password_hash=hash_password(payload.password),
@@ -45,7 +46,25 @@ def register(payload: SellerRegister, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=TokenResponse)
 def login(payload: SellerLogin, db: Session = Depends(get_db)):
-    seller = db.query(Seller).filter(Seller.email == payload.email).first()
+    # If store_name is provided (login from store subdomain), validate ownership
+    if payload.store_name:
+        seller = (
+            db.query(Seller)
+            .filter(Seller.email == payload.email, Seller.store_name == payload.store_name)
+            .first()
+        )
+        if not seller:
+            # Check if email exists under a different store
+            other = db.query(Seller).filter(Seller.email == payload.email).first()
+            if other and verify_password(payload.password, other.password_hash):
+                raise HTTPException(
+                    status_code=401,
+                    detail=f"This email belongs to store '{other.store_name}', not '{payload.store_name}'"
+                )
+            raise HTTPException(status_code=401, detail="Invalid email or password")
+    else:
+        seller = db.query(Seller).filter(Seller.email == payload.email).first()
+
     if not seller or not verify_password(payload.password, seller.password_hash):
         raise HTTPException(status_code=401, detail="Invalid email or password")
 

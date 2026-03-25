@@ -48,8 +48,8 @@ export default async function ProductPage({
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
-            {seller?.store_name ? (
-              <span className="capitalize">{seller.store_name}</span>
+            {seller ? (
+              <span className="capitalize">{seller.display_name || seller.store_name}</span>
             ) : (
               "Back"
             )}

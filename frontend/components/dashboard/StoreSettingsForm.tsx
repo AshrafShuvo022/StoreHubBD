@@ -5,11 +5,12 @@ import { useSession } from "next-auth/react"
 import ImageUploader from "./ImageUploader"
 
 interface Seller {
+  store_name: string
+  display_name: string | null
   owner_name: string
   phone: string | null
   logo_url: string | null
   description: string | null
-  store_name: string
   email: string
 }
 
@@ -37,6 +38,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
 
     const form = new FormData(e.currentTarget)
     const body = {
+      display_name: (form.get("display_name") as string)?.trim() || null,
       owner_name: form.get("owner_name"),
       phone: form.get("phone") || null,
       logo_url: logoUrl || null,
@@ -89,7 +91,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
               Upload a square image for best results.<br />JPG, PNG or WebP · Max 5MB
             </p>
             {!logoUrl && (
-              <div className="mt-3 w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-700 text-lg font-bold">
+              <div className="mt-3 w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg font-bold" style={{ background: "#131921" }}>
                 {initials}
               </div>
             )}
@@ -100,13 +102,27 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
           {/* Store Info (readonly) */}
           <div className="bg-gray-50 rounded-xl p-3 text-sm text-gray-600 grid grid-cols-2 gap-2">
             <div>
-              <p className="text-xs text-gray-400 font-medium mb-0.5">Store URL</p>
-              <p className="font-semibold text-indigo-600">{seller.store_name}.storehubbd.com</p>
+              <p className="text-xs text-gray-400 font-medium mb-0.5">Store URL (permanent)</p>
+              <p className="font-semibold font-mono text-xs" style={{ color: "#007185" }}>{seller.store_name}.storehubbd.com</p>
             </div>
             <div>
               <p className="text-xs text-gray-400 font-medium mb-0.5">Email</p>
               <p className="font-medium truncate">{seller.email}</p>
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Store Display Name</label>
+            <input
+              name="display_name"
+              type="text"
+              defaultValue={seller.display_name || ""}
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
+              placeholder={seller.store_name}
+            />
+            <p className="text-xs text-gray-400 mt-1.5">
+              What customers see instead of your URL slug. Leave blank to use <span className="font-mono">{seller.store_name}</span>.
+            </p>
           </div>
 
           <div>
@@ -116,7 +132,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
               type="text"
               required
               defaultValue={seller.owner_name}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
             />
           </div>
 
@@ -126,7 +142,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
               name="description"
               rows={3}
               defaultValue={seller.description || ""}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all resize-none"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all resize-none"
               placeholder="Tell customers about your store..."
             />
           </div>
@@ -141,7 +157,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
             name="phone"
             type="tel"
             defaultValue={seller.phone || ""}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
             placeholder="01711223344"
           />
           <p className="text-xs text-gray-400 mt-1.5">Used for SMS order alerts</p>
@@ -166,7 +182,8 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full sm:w-auto bg-indigo-600 text-white px-8 py-2.5 rounded-xl text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50 active:scale-[0.98] transition-all"
+        className="w-full sm:w-auto px-8 py-2.5 rounded-xl text-sm font-bold text-gray-900 hover:brightness-95 disabled:opacity-50 active:scale-[0.98] transition-all"
+        style={{ background: "#FFD814", border: "1px solid #FCD200" }}
       >
         {loading ? "Saving..." : "Save Settings"}
       </button>

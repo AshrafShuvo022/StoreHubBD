@@ -6,6 +6,7 @@ from pydantic import BaseModel, EmailStr
 
 class SellerRegister(BaseModel):
     store_name: str
+    display_name: str | None = None
     owner_name: str
     email: EmailStr
     password: str
@@ -15,9 +16,11 @@ class SellerRegister(BaseModel):
 class SellerLogin(BaseModel):
     email: EmailStr
     password: str
+    store_name: str | None = None  # store context from subdomain login
 
 
 class SellerUpdate(BaseModel):
+    display_name: str | None = None
     owner_name: str | None = None
     phone: str | None = None
     logo_url: str | None = None
@@ -27,6 +30,7 @@ class SellerUpdate(BaseModel):
 class SellerOut(BaseModel):
     id: uuid.UUID
     store_name: str
+    display_name: str | None
     owner_name: str
     email: str
     phone: str | None

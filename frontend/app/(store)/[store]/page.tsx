@@ -38,18 +38,18 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
             {seller.logo_url ? (
               <Image
                 src={seller.logo_url}
-                alt={seller.store_name}
+                alt={seller.display_name || seller.store_name}
                 width={30}
                 height={30}
                 className="w-7 h-7 rounded-md object-cover"
               />
             ) : (
               <div className="w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style={{ background: "#FF9900" }}>
-                {seller.store_name[0].toUpperCase()}
+                {(seller.display_name || seller.store_name)[0].toUpperCase()}
               </div>
             )}
-            <span className="font-semibold text-white capitalize text-sm">
-              {seller.store_name}
+            <span className="font-semibold text-white text-sm capitalize">
+              {seller.display_name || seller.store_name}
             </span>
           </div>
           <CartIconButton />
@@ -63,7 +63,7 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
             {seller.logo_url ? (
               <Image
                 src={seller.logo_url}
-                alt={seller.store_name}
+                alt={seller.display_name || seller.store_name}
                 width={64}
                 height={64}
                 className="w-14 h-14 lg:w-16 lg:h-16 rounded-lg object-cover flex-shrink-0 border border-gray-200"
@@ -73,12 +73,12 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
                 className="w-14 h-14 lg:w-16 lg:h-16 rounded-lg flex items-center justify-center text-white text-xl lg:text-2xl font-bold flex-shrink-0"
                 style={{ background: "#131921" }}
               >
-                {seller.store_name[0].toUpperCase()}
+                {(seller.display_name || seller.store_name)[0].toUpperCase()}
               </div>
             )}
             <div className="min-w-0">
               <h1 className="text-lg lg:text-xl font-bold text-gray-900 capitalize">
-                {seller.store_name}
+                {seller.display_name || seller.store_name}
               </h1>
               {seller.description && (
                 <p className="text-gray-500 text-sm mt-0.5 line-clamp-1 max-w-lg">

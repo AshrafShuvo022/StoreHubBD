@@ -35,7 +35,15 @@ export default async function proxy(req: NextRequest) {
   if (pathname === "/login") {
     const session = await auth()
     if (session) {
-      return NextResponse.redirect(new URL("/dashboard", req.url))
+      if (session.storeName === storeName) {
+        // Same store already logged in — go to dashboard
+        return NextResponse.redirect(new URL("/dashboard", req.url))
+      }
+      // Different store logged in — let them see the login page to switch accounts
+      // The login page will show a "switching account" notice
+      const url = req.nextUrl.clone()
+      url.searchParams.set("switch", session.storeName)
+      return NextResponse.rewrite(url)
     }
     return NextResponse.next()
   }
