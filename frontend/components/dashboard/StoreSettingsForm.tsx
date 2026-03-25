@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useSession } from "next-auth/react"
-import Image from "next/image"
+import ImageUploader from "./ImageUploader"
 
 interface Seller {
   owner_name: string
@@ -79,33 +79,20 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
       {/* Section 1 — Store Identity */}
       <Section title="Store Identity">
         {/* Logo */}
-        <div className="flex items-center gap-5 mb-6">
-          <div className="flex-shrink-0">
-            {logoUrl ? (
-              <Image
-                src={logoUrl}
-                alt="store logo"
-                width={80}
-                height={80}
-                className="w-20 h-20 rounded-2xl object-cover border border-gray-200"
-                onError={() => setLogoUrl("")}
-              />
-            ) : (
-              <div className="w-20 h-20 rounded-2xl bg-indigo-100 flex items-center justify-center text-indigo-700 text-xl font-bold">
+        <div className="flex items-start gap-5 mb-6">
+          <div className="w-32 flex-shrink-0">
+            <ImageUploader value={logoUrl} onChange={setLogoUrl} />
+          </div>
+          <div className="pt-1">
+            <p className="text-sm font-semibold text-gray-800">Store Logo</p>
+            <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+              Upload a square image for best results.<br />JPG, PNG or WebP · Max 5MB
+            </p>
+            {!logoUrl && (
+              <div className="mt-3 w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-700 text-lg font-bold">
                 {initials}
               </div>
             )}
-          </div>
-          <div className="flex-1 min-w-0">
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Logo URL</label>
-            <input
-              type="url"
-              value={logoUrl}
-              onChange={(e) => setLogoUrl(e.target.value)}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
-              placeholder="https://res.cloudinary.com/..."
-            />
-            <p className="text-xs text-gray-400 mt-1">Paste a Cloudinary or any image URL</p>
           </div>
         </div>
 
