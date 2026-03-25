@@ -27,12 +27,12 @@ export default function StoreGrid({ products }: { products: Product[] }) {
         <div className="relative">
           <svg
             className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-            width="15"
-            height="15"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -44,7 +44,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
             placeholder="Search products..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-2xl text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all shadow-sm"
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition-all"
           />
         </div>
       </div>
@@ -52,14 +52,13 @@ export default function StoreGrid({ products }: { products: Product[] }) {
       {/* Grid */}
       {filtered.length === 0 ? (
         <div className="py-20 text-center">
-          <div className="text-4xl mb-3">🔍</div>
-          <p className="text-gray-500 text-sm font-medium">
-            {query ? `No products match "${query}"` : "No products yet."}
+          <p className="text-gray-400 text-sm">
+            {query ? `No results for "${query}"` : "No products yet."}
           </p>
           {query && (
             <button
               onClick={() => setQuery("")}
-              className="mt-3 text-indigo-600 text-sm font-semibold hover:underline"
+              className="mt-3 text-slate-700 text-sm font-semibold hover:underline"
             >
               Clear search
             </button>
@@ -71,7 +70,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
             <Link
               key={product.id}
               href={`/${product.id}`}
-              className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-200 active:scale-[0.97]"
+              className="group bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-lg hover:shadow-black/5 transition-all duration-200 active:scale-[0.98]"
             >
               {/* Image */}
               <div className="relative aspect-square w-full overflow-hidden bg-gray-50">
@@ -80,12 +79,12 @@ export default function StoreGrid({ products }: { products: Product[] }) {
                     src={product.image_url}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
                       <line x1="3" y1="6" x2="21" y2="6" />
                       <path d="M16 10a4 4 0 01-8 0" />
@@ -93,10 +92,10 @@ export default function StoreGrid({ products }: { products: Product[] }) {
                   </div>
                 )}
 
-                {/* Out of stock overlay */}
+                {/* Out of stock */}
                 {!product.is_available && (
-                  <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] flex items-center justify-center">
-                    <span className="text-xs font-bold text-gray-500 bg-white border border-gray-200 px-3 py-1 rounded-full shadow-sm">
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <span className="text-xs font-bold text-white bg-black/60 px-3 py-1 rounded-full">
                       Out of Stock
                     </span>
                   </div>
@@ -105,28 +104,29 @@ export default function StoreGrid({ products }: { products: Product[] }) {
 
               {/* Info */}
               <div className="p-3">
-                <p className="text-sm font-semibold text-gray-800 leading-snug line-clamp-2 mb-2">
+                <p className="text-[13px] font-medium text-gray-800 leading-snug line-clamp-2 mb-2.5">
                   {product.name}
                 </p>
                 <div className="flex items-center justify-between">
-                  <p className="text-base font-extrabold text-indigo-600">
-                    {product.has_variants ? (
-                      <span className="text-xs font-semibold text-gray-400 mr-0.5">From </span>
-                    ) : null}
-                    ৳{Number(product.price).toLocaleString()}
-                  </p>
+                  <div>
+                    {product.has_variants && (
+                      <span className="text-[10px] text-gray-400 block leading-none mb-0.5">From</span>
+                    )}
+                    <p className="text-sm font-bold text-gray-900">
+                      ৳{Number(product.price).toLocaleString()}
+                    </p>
+                  </div>
                   {product.is_available && (
-                    <div className="w-7 h-7 rounded-full bg-indigo-50 flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-200">
+                    <div className="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-200 flex-shrink-0">
                       <svg
                         width="13"
                         height="13"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="currentColor"
+                        stroke="white"
                         strokeWidth="2.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="text-indigo-600 group-hover:text-white transition-colors duration-200"
                       >
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />

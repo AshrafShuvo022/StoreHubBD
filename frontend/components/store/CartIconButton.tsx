@@ -7,7 +7,7 @@ export default function CartIconButton() {
   return (
     <button
       onClick={openCart}
-      className="relative p-1.5 text-gray-600 hover:text-indigo-600 transition"
+      className="relative p-1.5 text-slate-400 hover:text-white transition"
       aria-label="Open cart"
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
