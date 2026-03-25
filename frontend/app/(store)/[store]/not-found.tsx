@@ -25,7 +25,7 @@ export default function StoreNotFound() {
         <div className="w-12 h-px bg-gray-200 mx-auto my-5" />
 
         <Link
-          href="http://app.localhost:3000"
+          href="http://localhost:3000"
           className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-indigo-700 active:scale-[0.98] transition-all"
         >
           Go to StoreHubBD
