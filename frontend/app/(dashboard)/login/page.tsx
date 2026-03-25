@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { signIn } from "next-auth/react"
+import { signIn, getSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -31,7 +31,16 @@ export default function LoginPage() {
       setShake(true)
       setTimeout(() => setShake(false), 400)
     } else {
-      router.push("/dashboard")
+      const session = await getSession()
+      const storeName = session?.storeName
+      const { hostname, port } = window.location
+      const isRootDomain = hostname === "localhost" || hostname === "127.0.0.1"
+      if (isRootDomain && storeName) {
+        const storeHost = port ? `${storeName}.localhost:${port}` : `${storeName}.localhost`
+        window.location.href = `http://${storeHost}/dashboard`
+      } else {
+        router.push("/dashboard")
+      }
     }
   }
 
