@@ -143,6 +143,7 @@ function StoreLogin({ storeName }: { storeName: string }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const switchingFrom = searchParams.get("switch")
+  const justRegistered = searchParams.get("registered") === "true"
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -227,6 +228,15 @@ function StoreLogin({ storeName }: { storeName: string }) {
 
           <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
           <p className="text-gray-500 text-sm mt-1">Sign in to your <span className="font-medium capitalize">{storeName}</span> dashboard</p>
+
+          {justRegistered && (
+            <div className="mt-4 bg-green-50 border border-green-200 text-green-800 text-sm px-4 py-3 rounded flex items-center gap-2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Store created! Sign in to open your dashboard.
+            </div>
+          )}
 
           {switchingFrom && (
             <div className="mt-4 bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded flex items-start gap-2">

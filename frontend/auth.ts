@@ -16,8 +16,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         httpOnly: true,
         sameSite: "lax" as const,
         path: "/",
-        // Share cookie across all subdomains (.localhost in dev, .storehubbd.com in prod)
-        domain: isProd ? ".storehubbd.com" : ".localhost",
+        // In prod: share across all subdomains via .storehubbd.com
+        // In dev: no domain (host-only) — browsers reject .localhost as a cookie domain,
+        //         so login must always happen on the target subdomain directly
+        domain: isProd ? ".storehubbd.com" : undefined,
         secure: isProd,
       },
     },

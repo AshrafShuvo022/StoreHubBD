@@ -1,12 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 
 export default function RegisterPage() {
-  const router = useRouter()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [storeSlug, setStoreSlug] = useState("")
@@ -42,13 +39,12 @@ export default function RegisterPage() {
         return
       }
 
-      await signIn("credentials", {
-        email: body.email,
-        password: form.get("password"),
-        redirect: false,
-      })
-
-      router.push("/dashboard")
+      // Redirect to the store's own subdomain login page.
+      // We can't signIn here (localhost) and have the cookie work on bdwatch.localhost
+      // because browsers reject domain=.localhost cookies. Login must happen on the subdomain.
+      const { port } = window.location
+      const host = port ? `${body.store_name}.localhost:${port}` : `${body.store_name}.localhost`
+      window.location.href = `http://${host}/login?registered=true`
     } catch {
       setError("Something went wrong. Please try again.")
       setLoading(false)
