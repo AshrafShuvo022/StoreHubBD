@@ -16,6 +16,7 @@ export default async function SettingsPage() {
   if (!session) redirect("/login")
 
   const seller = await getSeller(session.accessToken)
+  if (!seller) redirect("/login")
 
   return (
     <div className="p-6 sm:p-8 lg:p-10 max-w-3xl">
