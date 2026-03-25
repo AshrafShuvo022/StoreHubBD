@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import OrderSheet from "@/components/store/OrderSheet"
 import OrderFormInline from "@/components/store/OrderFormInline"
+import CartIconButton from "@/components/store/CartIconButton"
 
 async function getProduct(storeName: string, productId: string) {
   const res = await fetch(
@@ -47,24 +48,27 @@ export default async function ProductPage({
           </svg>
           Back
         </Link>
-        {seller && (
-          <div className="flex items-center gap-2">
-            {seller.logo_url ? (
-              <Image
-                src={seller.logo_url}
-                alt={seller.store_name}
-                width={24}
-                height={24}
-                className="w-6 h-6 rounded-full object-cover"
-              />
-            ) : (
-              <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">
-                {seller.store_name[0].toUpperCase()}
-              </div>
-            )}
-            <span className="text-sm font-semibold text-gray-700 capitalize">{seller.store_name}</span>
-          </div>
-        )}
+        <div className="flex items-center gap-3">
+          {seller && (
+            <div className="flex items-center gap-2">
+              {seller.logo_url ? (
+                <Image
+                  src={seller.logo_url}
+                  alt={seller.store_name}
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">
+                  {seller.store_name[0].toUpperCase()}
+                </div>
+              )}
+              <span className="text-sm font-semibold text-gray-700 capitalize">{seller.store_name}</span>
+            </div>
+          )}
+          <CartIconButton />
+        </div>
       </div>
 
       {/* Mobile layout (< lg) */}

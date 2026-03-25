@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import StoreGrid from "@/components/store/StoreGrid"
+import CartFab from "@/components/store/CartFab"
 
 async function getStore(storeName: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/store/${storeName}`, {
@@ -82,12 +83,14 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
       {/* Powered by footer */}
       <div className="pb-6 text-center">
         <a
-          href="http://app.localhost:3000/register"
+          href="http://localhost:3000/register"
           className="text-xs text-gray-400 hover:text-indigo-500 transition-colors"
         >
           Powered by StoreHubBD · Create your free store →
         </a>
       </div>
+
+      <CartFab />
     </div>
   )
 }
