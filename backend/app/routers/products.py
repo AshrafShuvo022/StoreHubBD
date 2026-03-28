@@ -77,6 +77,22 @@ def create_product(
     return product
 
 
+@router.get("/{product_id}", response_model=ProductOut)
+def get_product(
+    product_id: uuid.UUID,
+    db: Session = Depends(get_db),
+    current_seller: Seller = Depends(get_current_seller),
+):
+    product = (
+        db.query(Product)
+        .filter(Product.id == product_id, Product.seller_id == current_seller.id)
+        .first()
+    )
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return product
+
+
 @router.put("/{product_id}", response_model=ProductOut)
 def update_product(
     product_id: uuid.UUID,

@@ -115,7 +115,7 @@ export default function Sidebar({ storeName }: { storeName: string }) {
           <span className="text-sm font-medium text-slate-300 truncate capitalize">{storeName}</span>
         </div>
         <button
-          onClick={() => signOut({ callbackUrl: "/login" })}
+          onClick={() => signOut({ callbackUrl: `${window.location.origin}/login` })}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-500 hover:bg-white/5 hover:text-slate-300 transition-all"
         >
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

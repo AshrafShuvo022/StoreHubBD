@@ -2,6 +2,7 @@ import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
 import Sidebar from "@/components/dashboard/Sidebar"
 import BottomNav from "@/components/dashboard/BottomNav"
+import SessionGuard from "@/components/dashboard/SessionGuard"
 
 export default async function DashboardLayout({
   children,
@@ -12,6 +13,7 @@ export default async function DashboardLayout({
 
   return (
     <SessionProvider>
+      <SessionGuard />
       {session ? (
         <div className="flex min-h-screen bg-gray-50">
           <Sidebar storeName={session.storeName} />

@@ -2,14 +2,19 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 import RevenueChart from "@/components/dashboard/RevenueChart"
+import AutoSignOut from "@/components/dashboard/AutoSignOut"
 
 async function getAnalytics(token: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/analytics`, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  })
-  if (!res.ok) return null
-  return res.json()
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/analytics`, {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store",
+    })
+    if (!res.ok) return null
+    return res.json()
+  } catch {
+    return null
+  }
 }
 
 const STATUS_BADGE: Record<string, string> = {
@@ -48,12 +53,7 @@ export default async function DashboardPage() {
   const analytics = await getAnalytics(session.accessToken)
 
   if (!analytics) {
-    return (
-      <div className="p-6 sm:p-8 lg:p-10 flex flex-col items-center justify-center min-h-[60vh] gap-4">
-        <p className="text-gray-500 text-sm">Could not load analytics. Your session may have expired.</p>
-        <a href="/login" className="text-sm font-semibold text-indigo-600 hover:underline">Sign in again →</a>
-      </div>
-    )
+    return <AutoSignOut />
   }
 
   const {

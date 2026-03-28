@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { signIn, getSession, signOut } from "next-auth/react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 
 function BrandLogo() {
@@ -140,7 +140,6 @@ function StoreFinder() {
 
 // ── Subdomain: full email + password login ────────────────────────────────────
 function StoreLogin({ storeName }: { storeName: string }) {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const switchingFrom = searchParams.get("switch")
   const justRegistered = searchParams.get("registered") === "true"
@@ -172,7 +171,10 @@ function StoreLogin({ storeName }: { storeName: string }) {
       setShake(true)
       setTimeout(() => setShake(false), 400)
     } else {
-      router.push("/dashboard")
+      // Full page load (not router.push) so the session cookie is sent in the
+      // initial HTML request — prevents the sidebar flash where auth() returns
+      // null on the first RSC fetch right after signIn sets the cookie
+      window.location.href = "/dashboard"
     }
   }
 

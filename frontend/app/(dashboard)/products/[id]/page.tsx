@@ -4,13 +4,12 @@ import Link from "next/link"
 import ProductForm from "@/components/dashboard/ProductForm"
 
 async function getProduct(id: string, token: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
   })
   if (!res.ok) return null
-  const products = await res.json()
-  return products.find((p: any) => p.id === id) || null
+  return res.json()
 }
 
 export default async function EditProductPage({
