@@ -18,9 +18,9 @@ export default async function DashboardLayout({
       <OrderNotificationProvider>
         <SessionGuard />
         {session ? (
-          <div className="flex min-h-screen bg-gray-50">
+          <div className="flex h-screen overflow-hidden bg-gray-50">
             <Sidebar storeName={session.storeName} />
-            <main className="flex-1 overflow-auto pb-16 lg:pb-0">{children}</main>
+            <main className="flex-1 overflow-y-auto pb-16 lg:pb-0">{children}</main>
             <BottomNav />
             <NewOrderToast />
           </div>
