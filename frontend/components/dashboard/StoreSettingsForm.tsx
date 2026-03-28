@@ -9,6 +9,7 @@ interface Seller {
   display_name: string | null
   owner_name: string
   phone: string | null
+  facebook_page: string | null
   logo_url: string | null
   description: string | null
   email: string
@@ -41,6 +42,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
       display_name: (form.get("display_name") as string)?.trim() || null,
       owner_name: form.get("owner_name"),
       phone: form.get("phone") || null,
+      facebook_page: (form.get("facebook_page") as string)?.trim().replace(/^(https?:\/\/)?(www\.)?facebook\.com\//i, "").replace(/\/$/, "") || null,
       logo_url: logoUrl || null,
       description: form.get("description") || null,
     }
@@ -151,16 +153,36 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
 
       {/* Section 2 — Contact */}
       <Section title="Contact">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
-          <input
-            name="phone"
-            type="tel"
-            defaultValue={seller.phone || ""}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
-            placeholder="01711223344"
-          />
-          <p className="text-xs text-gray-400 mt-1.5">Used for SMS order alerts</p>
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">WhatsApp / Phone Number</label>
+            <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#FF9900] focus-within:border-[#FF9900] transition-all">
+              <span className="px-3 py-2.5 bg-gray-50 text-gray-500 text-sm border-r border-gray-200 flex-shrink-0">+880</span>
+              <input
+                name="phone"
+                type="tel"
+                defaultValue={seller.phone || ""}
+                className="flex-1 px-3 py-2.5 text-sm outline-none bg-white"
+                placeholder="1711223344"
+              />
+            </div>
+            <p className="text-xs text-gray-400 mt-1.5">Shown as WhatsApp button on your store. Also used for SMS order alerts.</p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Facebook Page</label>
+            <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#FF9900] focus-within:border-[#FF9900] transition-all">
+              <span className="px-3 py-2.5 bg-gray-50 text-gray-500 text-sm border-r border-gray-200 flex-shrink-0 whitespace-nowrap">facebook.com/</span>
+              <input
+                name="facebook_page"
+                type="text"
+                defaultValue={seller.facebook_page || ""}
+                className="flex-1 px-3 py-2.5 text-sm outline-none bg-white"
+                placeholder="arjhafashion"
+              />
+            </div>
+            <p className="text-xs text-gray-400 mt-1.5">Shown as Messenger button on your store. Enter your page username only.</p>
+          </div>
         </div>
       </Section>
 

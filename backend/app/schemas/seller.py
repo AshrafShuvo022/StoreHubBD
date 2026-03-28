@@ -23,6 +23,7 @@ class SellerUpdate(BaseModel):
     display_name: str | None = None
     owner_name: str | None = None
     phone: str | None = None
+    facebook_page: str | None = None
     logo_url: str | None = None
     description: str | None = None
 
@@ -34,6 +35,7 @@ class SellerOut(BaseModel):
     owner_name: str
     email: str
     phone: str | None
+    facebook_page: str | None
     logo_url: str | None
     description: str | None
     is_active: bool
