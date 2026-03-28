@@ -1,3 +1,4 @@
+import json
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -53,7 +54,10 @@ def create_product(
     db: Session = Depends(get_db),
     current_seller: Seller = Depends(get_current_seller),
 ):
-    data = payload.model_dump(exclude={"variants"})
+    data = payload.model_dump(exclude={"variants", "image_urls"})
+    data["image_urls"] = json.dumps(payload.image_urls)
+    if payload.image_urls:
+        data["image_url"] = payload.image_urls[0]
     product = Product(**data, seller_id=current_seller.id)
 
     if payload.has_variants and payload.variants:
@@ -108,9 +112,13 @@ def update_product(
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    update_data = payload.model_dump(exclude_unset=True, exclude={"variants"})
+    update_data = payload.model_dump(exclude_unset=True, exclude={"variants", "image_urls"})
     for field, value in update_data.items():
         setattr(product, field, value)
+
+    if payload.image_urls is not None:
+        product.image_urls = json.dumps(payload.image_urls)
+        product.image_url = payload.image_urls[0] if payload.image_urls else None
 
     if payload.variants is not None:
         _sync_variants(db, product, payload.variants)

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
-import ImageUploader from "./ImageUploader"
+import MultiImageUploader from "./MultiImageUploader"
 
 interface Variant {
   label: string
@@ -18,6 +18,7 @@ interface ProductFormProps {
     description: string | null
     price: number
     image_url: string | null
+    image_urls: string[]
     is_available: boolean
     has_variants: boolean
     variants: { id: string; label: string; price: number; is_available: boolean }[]
@@ -29,7 +30,11 @@ export default function ProductForm({ initialData }: ProductFormProps) {
   const { data: session } = useSession()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [imageUrl, setImageUrl] = useState(initialData?.image_url || "")
+  const [imageUrls, setImageUrls] = useState<string[]>(
+    initialData?.image_urls?.length ? initialData.image_urls
+    : initialData?.image_url ? [initialData.image_url]
+    : []
+  )
   const [isAvailable, setIsAvailable] = useState(initialData?.is_available ?? true)
   const [hasVariants, setHasVariants] = useState(initialData?.has_variants ?? false)
   const [variants, setVariants] = useState<Variant[]>(
@@ -80,7 +85,8 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     const body: any = {
       name: form.get("name"),
       description: form.get("description") || null,
-      image_url: imageUrl || null,
+      image_url: imageUrls[0] || null,
+      image_urls: imageUrls,
       is_available: isAvailable,
       has_variants: hasVariants,
       variants: hasVariants
@@ -260,8 +266,9 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         <div className="space-y-4">
           {/* Image Panel */}
           <div className="bg-white rounded-2xl border border-gray-200 p-5">
-            <label className="block text-sm font-medium text-gray-700 mb-3">Product Image</label>
-            <ImageUploader value={imageUrl} onChange={setImageUrl} />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Product Photos</label>
+            <p className="text-xs text-gray-400 mb-3">Upload multiple photos. First is the main image.</p>
+            <MultiImageUploader value={imageUrls} onChange={setImageUrls} />
           </div>
 
           {/* Availability Toggle */}

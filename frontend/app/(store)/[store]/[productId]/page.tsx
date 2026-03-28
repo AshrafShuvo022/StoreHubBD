@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
 import OrderSheet from "@/components/store/OrderSheet"
 import OrderFormInline from "@/components/store/OrderFormInline"
 import CartIconButton from "@/components/store/CartIconButton"
+import ProductImageGallery from "@/components/store/ProductImageGallery"
 
 async function getProduct(storeName: string, productId: string) {
   const res = await fetch(
@@ -60,26 +60,12 @@ export default async function ProductPage({
 
       {/* Mobile layout */}
       <div className="lg:hidden">
-        <div className="relative aspect-square w-full overflow-hidden bg-gray-50">
-          {product.image_url ? (
-            <Image
-              src={product.image_url}
-              alt={product.name}
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-50">
-              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <path d="M16 10a4 4 0 01-8 0" />
-              </svg>
-            </div>
-          )}
-          <div className="absolute top-3 left-3">
+        <div className="relative w-full bg-gray-50" style={{ minHeight: "320px" }}>
+          <ProductImageGallery
+            images={product.image_urls?.length ? product.image_urls : product.image_url ? [product.image_url] : []}
+            productName={product.name}
+          />
+          <div className="absolute top-3 left-3 z-10">
             <span className={`text-xs font-semibold px-2.5 py-1 rounded ${
               product.is_available
                 ? "bg-[#007600] text-white"
@@ -154,26 +140,12 @@ export default async function ProductPage({
         <div className="max-w-6xl mx-auto px-6 py-6">
           <div className="grid lg:grid-cols-[1fr_400px] gap-5 items-start">
 
-            {/* Left: image */}
-            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden aspect-square sticky top-20">
-              {product.image_url ? (
-                <Image
-                  src={product.image_url}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-6"
-                  priority
-                  sizes="50vw"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                  <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <path d="M16 10a4 4 0 01-8 0" />
-                  </svg>
-                </div>
-              )}
+            {/* Left: image gallery */}
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden sticky top-20" style={{ aspectRatio: "1/1" }}>
+              <ProductImageGallery
+                images={product.image_urls?.length ? product.image_urls : product.image_url ? [product.image_url] : []}
+                productName={product.name}
+              />
             </div>
 
             {/* Right: info + order */}

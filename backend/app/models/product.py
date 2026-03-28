@@ -22,6 +22,7 @@ class Product(Base):
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     price: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
     image_url: Mapped[str | None] = mapped_column(String, nullable=True)
+    image_urls: Mapped[str] = mapped_column(Text, nullable=False, server_default="[]")
     is_available: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     has_variants: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
