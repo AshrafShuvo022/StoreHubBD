@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
+import { useOrderNotifications } from "@/context/OrderNotificationContext"
 
 const links = [
   {
@@ -54,6 +55,7 @@ const links = [
 
 export default function Sidebar({ storeName }: { storeName: string }) {
   const pathname = usePathname()
+  const { newOrders, clearNewOrders } = useOrderNotifications()
 
   const initials = storeName
     .split(/[\s_-]/)
@@ -93,6 +95,7 @@ export default function Sidebar({ storeName }: { storeName: string }) {
             <Link
               key={link.href}
               href={link.href}
+              onClick={link.href === "/orders" ? clearNewOrders : undefined}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 active
                   ? "bg-indigo-500 text-white"
@@ -100,7 +103,12 @@ export default function Sidebar({ storeName }: { storeName: string }) {
               }`}
             >
               <span className={active ? "text-white" : "text-slate-500"}>{link.icon}</span>
-              {link.label}
+              <span className="flex-1">{link.label}</span>
+              {link.href === "/orders" && newOrders.length > 0 && (
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full text-gray-900" style={{ background: "#FF9900" }}>
+                  {newOrders.length}
+                </span>
+              )}
             </Link>
           )
         })}

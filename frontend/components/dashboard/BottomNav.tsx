@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useOrderNotifications } from "@/context/OrderNotificationContext"
 
 const tabs = [
   {
@@ -53,6 +54,7 @@ const tabs = [
 
 export default function BottomNav() {
   const pathname = usePathname()
+  const { newOrders, clearNewOrders } = useOrderNotifications()
 
   return (
     <nav className="lg:hidden fixed bottom-0 inset-x-0 bg-slate-950 border-t border-white/5 z-40">
@@ -61,15 +63,24 @@ export default function BottomNav() {
           const active =
             pathname === tab.href ||
             (tab.href !== "/dashboard" && pathname.startsWith(tab.href))
+          const isOrders = tab.href === "/orders"
           return (
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex flex-col items-center gap-1 py-3 px-4 flex-1 transition-colors ${
+              onClick={isOrders ? clearNewOrders : undefined}
+              className={`relative flex flex-col items-center gap-1 py-3 px-4 flex-1 transition-colors ${
                 active ? "text-indigo-400" : "text-slate-600"
               }`}
             >
-              {tab.icon}
+              <div className="relative">
+                {tab.icon}
+                {isOrders && newOrders.length > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full text-[9px] font-bold text-gray-900 flex items-center justify-center" style={{ background: "#FF9900" }}>
+                    {newOrders.length}
+                  </span>
+                )}
+              </div>
               <span className={`text-[10px] font-semibold ${active ? "text-indigo-400" : "text-slate-600"}`}>
                 {tab.label}
               </span>
