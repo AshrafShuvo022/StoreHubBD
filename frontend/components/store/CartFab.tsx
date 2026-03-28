@@ -8,7 +8,7 @@ export default function CartFab() {
   return (
     <button
       onClick={openCart}
-      className="fixed bottom-6 right-5 z-30 text-gray-900 rounded px-4 py-2.5 shadow-lg flex items-center gap-3 active:scale-95 transition-all hover:brightness-95"
+      className="fixed bottom-[72px] right-4 z-40 lg:bottom-6 lg:right-5 text-gray-900 rounded px-4 py-2.5 shadow-lg flex items-center gap-3 active:scale-95 transition-all hover:brightness-95"
       style={{ background: "#FFD814", border: "1px solid #FCD200" }}
     >
       <div className="relative">
