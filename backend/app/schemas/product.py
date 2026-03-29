@@ -25,6 +25,7 @@ class ProductCreate(BaseModel):
     name: str
     description: str | None = None
     price: float
+    compare_at_price: float | None = None
     image_url: str | None = None
     image_urls: list[str] = []
     is_available: bool = True
@@ -36,6 +37,7 @@ class ProductUpdate(BaseModel):
     name: str | None = None
     description: str | None = None
     price: float | None = None
+    compare_at_price: float | None = None
     image_url: str | None = None
     image_urls: list[str] | None = None
     is_available: bool | None = None
@@ -49,6 +51,7 @@ class ProductOut(BaseModel):
     name: str
     description: str | None
     price: float
+    compare_at_price: float | None
     image_url: str | None
     image_urls: list[str] = []
     is_available: bool

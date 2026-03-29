@@ -80,9 +80,21 @@ export default async function ProductPage({
           <h1 className="text-xl font-semibold text-gray-900 leading-snug mb-2">
             {product.name}
           </h1>
-          <p className="text-2xl font-bold mb-1" style={{ color: "#B12704" }}>
-            ৳{Number(product.price).toLocaleString()}
-          </p>
+          <div className="mb-1">
+            <span className="text-2xl font-bold" style={{ color: "#B12704" }}>
+              ৳{Number(product.price).toLocaleString()}
+            </span>
+            {product.compare_at_price && product.compare_at_price > product.price && (
+              <span className="ml-2 text-sm text-gray-400 line-through">
+                ৳{Number(product.compare_at_price).toLocaleString()}
+              </span>
+            )}
+          </div>
+          {product.compare_at_price && product.compare_at_price > product.price && (
+            <span className="inline-block mb-2 text-xs font-bold text-white px-2 py-0.5 rounded" style={{ background: "#B12704" }}>
+              {Math.round((1 - product.price / product.compare_at_price) * 100)}% OFF
+            </span>
+          )}
           <p className="text-xs text-gray-500 mb-4">Inclusive of all taxes</p>
 
           {product.description && (
@@ -157,9 +169,21 @@ export default async function ProductPage({
                 </h1>
 
                 <div className="border-t border-gray-100 pt-3 mb-3">
-                  <p className="text-2xl font-bold" style={{ color: "#B12704" }}>
-                    ৳{Number(product.price).toLocaleString()}
-                  </p>
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="text-2xl font-bold" style={{ color: "#B12704" }}>
+                      ৳{Number(product.price).toLocaleString()}
+                    </span>
+                    {product.compare_at_price && product.compare_at_price > product.price && (
+                      <span className="text-sm text-gray-400 line-through">
+                        ৳{Number(product.compare_at_price).toLocaleString()}
+                      </span>
+                    )}
+                    {product.compare_at_price && product.compare_at_price > product.price && (
+                      <span className="text-xs font-bold text-white px-2 py-0.5 rounded" style={{ background: "#B12704" }}>
+                        {Math.round((1 - product.price / product.compare_at_price) * 100)}% OFF
+                      </span>
+                    )}
+                  </div>
                   <p className="text-xs text-gray-500 mt-0.5">Inclusive of all taxes</p>
                 </div>
 

@@ -17,6 +17,7 @@ interface ProductFormProps {
     name: string
     description: string | null
     price: number
+    compare_at_price: number | null
     image_url: string | null
     image_urls: string[]
     is_available: boolean
@@ -85,6 +86,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
     const body: any = {
       name: form.get("name"),
       description: form.get("description") || null,
+      compare_at_price: form.get("compare_at_price") ? parseFloat(form.get("compare_at_price") as string) : null,
       image_url: imageUrls[0] || null,
       image_urls: imageUrls,
       is_available: isAvailable,
@@ -165,22 +167,41 @@ export default function ProductForm({ initialData }: ProductFormProps) {
 
             {/* Price — only shown when no variants */}
             {!hasVariants && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Price (BDT)</label>
-                <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
-                  <span className="px-3 py-2.5 bg-gray-50 text-gray-700 text-sm font-semibold border-r border-gray-200 flex-shrink-0">
-                    ৳
-                  </span>
-                  <input
-                    name="price"
-                    type="number"
-                    required={!hasVariants}
-                    min="0"
-                    step="0.01"
-                    defaultValue={initialData?.price}
-                    className="flex-1 px-3 py-2.5 text-sm outline-none bg-white"
-                    placeholder="1200"
-                  />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Sale Price (BDT)</label>
+                  <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
+                    <span className="px-3 py-2.5 bg-gray-50 text-gray-700 text-sm font-semibold border-r border-gray-200 flex-shrink-0">৳</span>
+                    <input
+                      name="price"
+                      type="number"
+                      required={!hasVariants}
+                      min="0"
+                      step="0.01"
+                      defaultValue={initialData?.price}
+                      className="flex-1 px-3 py-2.5 text-sm outline-none bg-white"
+                      placeholder="800"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                    Compare at Price
+                    <span className="ml-1 text-xs text-gray-400 font-normal">(optional)</span>
+                  </label>
+                  <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
+                    <span className="px-3 py-2.5 bg-gray-50 text-gray-700 text-sm font-semibold border-r border-gray-200 flex-shrink-0">৳</span>
+                    <input
+                      name="compare_at_price"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      defaultValue={initialData?.compare_at_price || ""}
+                      className="flex-1 px-3 py-2.5 text-sm outline-none bg-white"
+                      placeholder="1200"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">Shows as crossed-out original price</p>
                 </div>
               </div>
             )}

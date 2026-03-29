@@ -8,6 +8,7 @@ interface Product {
   id: string
   name: string
   price: number
+  compare_at_price: number | null
   image_url: string | null
   is_available: boolean
   has_variants: boolean
@@ -114,7 +115,17 @@ export default function StoreGrid({ products }: { products: Product[] }) {
                   <span className="text-sm font-bold" style={{ color: "#B12704" }}>
                     ৳{Number(product.price).toLocaleString()}
                   </span>
+                  {product.compare_at_price && product.compare_at_price > product.price && (
+                    <span className="ml-1.5 text-[11px] text-gray-400 line-through">
+                      ৳{Number(product.compare_at_price).toLocaleString()}
+                    </span>
+                  )}
                 </div>
+                {product.compare_at_price && product.compare_at_price > product.price && (
+                  <span className="inline-block mt-1 text-[10px] font-bold text-white px-1.5 py-0.5 rounded" style={{ background: "#B12704" }}>
+                    {Math.round((1 - product.price / product.compare_at_price) * 100)}% OFF
+                  </span>
+                )}
                 {product.is_available && (
                   <div
                     className="mt-2 w-full text-center text-[11px] font-semibold text-gray-900 py-1.5 rounded border border-[#FCD200] transition-all"
