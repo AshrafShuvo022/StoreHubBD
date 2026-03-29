@@ -4,10 +4,11 @@ import OrderSheet from "@/components/store/OrderSheet"
 import OrderFormInline from "@/components/store/OrderFormInline"
 import CartIconButton from "@/components/store/CartIconButton"
 import ProductImageGallery from "@/components/store/ProductImageGallery"
+import ProductShareBar from "@/components/store/ProductShareBar"
 
-async function getProduct(storeName: string, productId: string) {
+async function getProduct(storeName: string, slug: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/store/${storeName}/products/${productId}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/store/${storeName}/products/${slug}`,
     { cache: "no-store" }
   )
   if (!res.ok) return null
@@ -27,9 +28,9 @@ export default async function ProductPage({
 }: {
   params: Promise<{ store: string; productId: string }>
 }) {
-  const { store: storeName, productId } = await params
+  const { store: storeName, productId: slug } = await params
   const [product, seller] = await Promise.all([
-    getProduct(storeName, productId),
+    getProduct(storeName, slug),
     getStore(storeName),
   ])
 
@@ -109,6 +110,11 @@ export default async function ProductPage({
               <p className="text-sm text-gray-600 leading-relaxed">{product.description}</p>
             </>
           )}
+        </div>
+
+        {/* Share — mobile */}
+        <div className="px-4 py-3 border-t border-gray-100">
+          <ProductShareBar productName={product.name} />
         </div>
 
         {/* Ask the seller — mobile */}
@@ -209,6 +215,10 @@ export default async function ProductPage({
                     <p className="text-sm text-gray-600 leading-relaxed">{product.description}</p>
                   </div>
                 )}
+
+                <div className="border-t border-gray-100 mt-3 pt-3">
+                  <ProductShareBar productName={product.name} />
+                </div>
               </div>
 
               {/* Order card */}

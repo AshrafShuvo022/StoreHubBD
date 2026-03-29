@@ -49,6 +49,7 @@ class ProductOut(BaseModel):
     id: uuid.UUID
     seller_id: uuid.UUID
     name: str
+    slug: str
     description: str | None
     price: float
     compare_at_price: float | None

@@ -6,6 +6,7 @@ import Image from "next/image"
 
 interface Product {
   id: string
+  slug: string
   name: string
   price: number
   compare_at_price: number | null
@@ -72,7 +73,7 @@ export default function StoreGrid({ products }: { products: Product[] }) {
           {filtered.map((product) => (
             <Link
               key={product.id}
-              href={`/${product.id}`}
+              href={`/${product.slug}`}
               className="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-md transition-all duration-150 active:scale-[0.99] flex flex-col"
             >
               {/* Image */}

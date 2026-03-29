@@ -1,4 +1,5 @@
 import json
+import re
 import uuid
 from io import BytesIO
 
@@ -13,6 +14,31 @@ from app.models.seller import Seller
 from app.schemas.product import ProductCreate, ProductOut, ProductUpdate
 
 router = APIRouter(prefix="/api/products", tags=["products"])
+
+
+def _slugify(text: str) -> str:
+    text = text.lower().strip()
+    text = re.sub(r'[^\w\s-]', '', text)
+    text = re.sub(r'[\s_]+', '-', text)
+    text = re.sub(r'-+', '-', text)
+    return text.strip('-') or 'product'
+
+
+def _unique_slug(db: Session, seller_id, name: str, exclude_id=None) -> str:
+    base = _slugify(name)
+    slug = base
+    counter = 2
+    while True:
+        q = db.query(Product).filter(
+            Product.seller_id == seller_id,
+            Product.slug == slug,
+        )
+        if exclude_id:
+            q = q.filter(Product.id != exclude_id)
+        if not q.first():
+            return slug
+        slug = f"{base}-{counter}"
+        counter += 1
 
 
 def _sync_variants(db: Session, product: Product, variants_data: list) -> None:
@@ -60,6 +86,7 @@ def create_product(
     data["image_urls"] = json.dumps(payload.image_urls)
     if payload.image_urls:
         data["image_url"] = payload.image_urls[0]
+    data["slug"] = _unique_slug(db, current_seller.id, payload.name)
     product = Product(**data, seller_id=current_seller.id)
 
     if payload.has_variants and payload.variants:
@@ -117,6 +144,9 @@ def update_product(
     update_data = payload.model_dump(exclude_unset=True, exclude={"variants", "image_urls"})
     for field, value in update_data.items():
         setattr(product, field, value)
+
+    if payload.name is not None:
+        product.slug = _unique_slug(db, current_seller.id, payload.name, exclude_id=product_id)
 
     if payload.image_urls is not None:
         product.image_urls = json.dumps(payload.image_urls)
@@ -262,6 +292,7 @@ async def bulk_import_products(
         product = Product(
             seller_id=current_seller.id,
             name=name,
+            slug=_unique_slug(db, current_seller.id, name),
             description=description,
             price=base_price if not has_variants else min(p for _, p in valid_variants),
             compare_at_price=compare_at_price,

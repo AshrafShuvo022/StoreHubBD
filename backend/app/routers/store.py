@@ -94,14 +94,14 @@ def get_new_arrivals(store_name: str, db: Session = Depends(get_db)):
     )
 
 
-@router.get("/{store_name}/products/{product_id}", response_model=ProductOut)
-def get_store_product(store_name: str, product_id: str, db: Session = Depends(get_db)):
+@router.get("/{store_name}/products/{slug}", response_model=ProductOut)
+def get_store_product(store_name: str, slug: str, db: Session = Depends(get_db)):
     seller = get_store_or_404(store_name, db)
     product = (
         db.query(Product)
         .options(with_expression(Product.order_count, _sold_count_subquery()))
         .filter(
-            Product.id == product_id,
+            Product.slug == slug,
             Product.seller_id == seller.id,
             Product.is_available == True,
         )

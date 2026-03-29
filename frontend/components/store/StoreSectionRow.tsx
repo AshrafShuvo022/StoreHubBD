@@ -3,6 +3,7 @@ import Image from "next/image"
 
 interface Product {
   id: string
+  slug: string
   name: string
   price: number
   compare_at_price: number | null
@@ -36,7 +37,7 @@ export default function StoreSectionRow({ title, badge, products }: StoreSection
         {products.map((product) => (
           <Link
             key={product.id}
-            href={`/${product.id}`}
+            href={`/${product.slug}`}
             className="group flex-shrink-0 w-36 lg:w-auto bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-md transition-all duration-150 active:scale-[0.99] flex flex-col"
           >
             {/* Image */}
