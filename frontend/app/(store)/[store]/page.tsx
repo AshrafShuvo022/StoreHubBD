@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import StoreGrid from "@/components/store/StoreGrid"
+import StoreSectionRow from "@/components/store/StoreSectionRow"
 import CartFab from "@/components/store/CartFab"
 import CartIconButton from "@/components/store/CartIconButton"
 import SellerContactWidget from "@/components/store/SellerContactWidget"
@@ -21,9 +22,30 @@ async function getProducts(storeName: string) {
   return res.json()
 }
 
+async function getBestSellers(storeName: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/store/${storeName}/products/best-sellers`, {
+    cache: "no-store",
+  })
+  if (!res.ok) return []
+  return res.json()
+}
+
+async function getNewArrivals(storeName: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/store/${storeName}/products/new-arrivals`, {
+    cache: "no-store",
+  })
+  if (!res.ok) return []
+  return res.json()
+}
+
 export default async function StorePage({ params }: { params: Promise<{ store: string }> }) {
   const { store: storeName } = await params
-  const [seller, products] = await Promise.all([getStore(storeName), getProducts(storeName)])
+  const [seller, products, bestSellers, newArrivals] = await Promise.all([
+    getStore(storeName),
+    getProducts(storeName),
+    getBestSellers(storeName),
+    getNewArrivals(storeName),
+  ])
 
   if (!seller) notFound()
 
@@ -103,6 +125,18 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
 
       {/* Products */}
       <div className="max-w-6xl mx-auto px-4 lg:px-6 py-4">
+        {/* Best Sellers section */}
+        <StoreSectionRow title="Best Sellers" badge="HOT" products={bestSellers} />
+
+        {/* New Arrivals section */}
+        <StoreSectionRow title="New Arrivals" products={newArrivals} />
+
+        {/* All products grid */}
+        {(bestSellers.length > 0 || newArrivals.length > 0) && (
+          <div className="mb-3">
+            <h2 className="text-sm font-bold text-gray-900">All Products</h2>
+          </div>
+        )}
         <StoreGrid products={availableProducts} />
       </div>
 

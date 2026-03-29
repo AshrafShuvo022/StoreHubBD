@@ -53,6 +53,47 @@ def get_store_products(store_name: str, db: Session = Depends(get_db)):
     )
 
 
+@router.get("/{store_name}/products/best-sellers", response_model=list[ProductOut])
+def get_best_sellers(store_name: str, db: Session = Depends(get_db)):
+    seller = get_store_or_404(store_name, db)
+    if not seller.show_best_sellers:
+        return []
+    count_expr = _sold_count_subquery()
+    has_orders = (
+        select(OrderItem.id)
+        .join(Order, Order.id == OrderItem.order_id)
+        .where(
+            OrderItem.product_id == Product.id,
+            Order.status != OrderStatus.cancelled,
+        )
+        .correlate(Product)
+        .exists()
+    )
+    return (
+        db.query(Product)
+        .options(with_expression(Product.order_count, count_expr))
+        .filter(Product.seller_id == seller.id, Product.is_available == True, has_orders)
+        .order_by(count_expr.desc())
+        .limit(6)
+        .all()
+    )
+
+
+@router.get("/{store_name}/products/new-arrivals", response_model=list[ProductOut])
+def get_new_arrivals(store_name: str, db: Session = Depends(get_db)):
+    seller = get_store_or_404(store_name, db)
+    if not seller.show_new_arrivals:
+        return []
+    return (
+        db.query(Product)
+        .options(with_expression(Product.order_count, _sold_count_subquery()))
+        .filter(Product.seller_id == seller.id, Product.is_available == True)
+        .order_by(Product.created_at.desc())
+        .limit(6)
+        .all()
+    )
+
+
 @router.get("/{store_name}/products/{product_id}", response_model=ProductOut)
 def get_store_product(store_name: str, product_id: str, db: Session = Depends(get_db)):
     seller = get_store_or_404(store_name, db)

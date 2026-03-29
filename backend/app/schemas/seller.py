@@ -26,6 +26,8 @@ class SellerUpdate(BaseModel):
     facebook_page: str | None = None
     logo_url: str | None = None
     description: str | None = None
+    show_best_sellers: bool | None = None
+    show_new_arrivals: bool | None = None
 
 
 class SellerOut(BaseModel):
@@ -38,6 +40,8 @@ class SellerOut(BaseModel):
     facebook_page: str | None
     logo_url: str | None
     description: str | None
+    show_best_sellers: bool
+    show_new_arrivals: bool
     is_active: bool
     created_at: datetime
 

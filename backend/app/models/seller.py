@@ -24,6 +24,8 @@ class Seller(Base):
     facebook_page: Mapped[str | None] = mapped_column(String(100), nullable=True)
     logo_url: Mapped[str | None] = mapped_column(String, nullable=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    show_best_sellers: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    show_new_arrivals: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False

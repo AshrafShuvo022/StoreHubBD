@@ -13,6 +13,8 @@ interface Seller {
   logo_url: string | null
   description: string | null
   email: string
+  show_best_sellers: boolean
+  show_new_arrivals: boolean
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -30,6 +32,8 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
   const [logoUrl, setLogoUrl] = useState(seller.logo_url || "")
+  const [showBestSellers, setShowBestSellers] = useState(seller.show_best_sellers)
+  const [showNewArrivals, setShowNewArrivals] = useState(seller.show_new_arrivals)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -45,6 +49,8 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
       facebook_page: (form.get("facebook_page") as string)?.trim().replace(/^(https?:\/\/)?(www\.)?facebook\.com\//i, "").replace(/\/$/, "") || null,
       logo_url: logoUrl || null,
       description: form.get("description") || null,
+      show_best_sellers: showBestSellers,
+      show_new_arrivals: showNewArrivals,
     }
 
     try {
@@ -182,6 +188,42 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
               />
             </div>
             <p className="text-xs text-gray-400 mt-1.5">Shown as Messenger button on your store. Enter your page username only.</p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Section 3 — Store Sections */}
+      <Section title="Store Sections">
+        <p className="text-xs text-gray-500 mb-4">Choose which sections appear on your store homepage. Sections only show when there is data to display.</p>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-700">Best Sellers</p>
+              <p className="text-xs text-gray-400 mt-0.5">Shows your top-ordered products automatically</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowBestSellers((v) => !v)}
+              className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${showBestSellers ? "bg-indigo-600" : "bg-gray-200"}`}
+            >
+              <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${showBestSellers ? "translate-x-5" : "translate-x-0"}`} />
+            </button>
+          </div>
+
+          <div className="h-px bg-gray-100" />
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-700">New Arrivals</p>
+              <p className="text-xs text-gray-400 mt-0.5">Shows your most recently added products</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowNewArrivals((v) => !v)}
+              className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${showNewArrivals ? "bg-indigo-600" : "bg-gray-200"}`}
+            >
+              <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${showNewArrivals ? "translate-x-5" : "translate-x-0"}`} />
+            </button>
           </div>
         </div>
       </Section>
