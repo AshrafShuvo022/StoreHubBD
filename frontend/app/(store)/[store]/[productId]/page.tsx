@@ -23,6 +23,42 @@ async function getStore(storeName: string) {
   return res.json()
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ store: string; productId: string }>
+}) {
+  const { store: storeName, productId: slug } = await params
+  const [product, seller] = await Promise.all([
+    getProduct(storeName, slug),
+    getStore(storeName),
+  ])
+
+  if (!product) return {}
+
+  const storeName_ = seller?.display_name || seller?.store_name || storeName
+  const description = product.description
+    ? product.description.slice(0, 160)
+    : `৳${Number(product.price).toLocaleString()} — Available at ${storeName_}`
+
+  return {
+    title: `${product.name} — ${storeName_}`,
+    description,
+    openGraph: {
+      title: product.name,
+      description,
+      type: "website",
+      images: product.image_url ? [{ url: product.image_url, width: 800, height: 800, alt: product.name }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description,
+      images: product.image_url ? [product.image_url] : [],
+    },
+  }
+}
+
 export default async function ProductPage({
   params,
 }: {

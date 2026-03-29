@@ -38,6 +38,35 @@ async function getNewArrivals(storeName: string) {
   return res.json()
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ store: string }> }) {
+  const { store: storeName } = await params
+  const seller = await getStore(storeName)
+
+  if (!seller) return {}
+
+  const name = seller.display_name || seller.store_name
+  const description = seller.description
+    ? seller.description.slice(0, 160)
+    : `Shop at ${name} on StoreHubBD`
+
+  return {
+    title: name,
+    description,
+    openGraph: {
+      title: name,
+      description,
+      type: "website",
+      images: seller.logo_url ? [{ url: seller.logo_url, width: 400, height: 400, alt: name }] : [],
+    },
+    twitter: {
+      card: "summary",
+      title: name,
+      description,
+      images: seller.logo_url ? [seller.logo_url] : [],
+    },
+  }
+}
+
 export default async function StorePage({ params }: { params: Promise<{ store: string }> }) {
   const { store: storeName } = await params
   const [seller, products, bestSellers, newArrivals] = await Promise.all([
