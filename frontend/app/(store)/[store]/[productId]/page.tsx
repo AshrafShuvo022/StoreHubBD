@@ -95,7 +95,13 @@ export default async function ProductPage({
               {Math.round((1 - product.price / product.compare_at_price) * 100)}% OFF
             </span>
           )}
-          <p className="text-xs text-gray-500 mb-4">Inclusive of all taxes</p>
+          <p className="text-xs text-gray-500 mb-2">Inclusive of all taxes</p>
+          {product.order_count > 0 && (
+            <p className="text-xs text-gray-500 mb-4">
+              <span className="font-semibold text-gray-700">{product.order_count}+</span> people ordered this
+            </p>
+          )}
+          {!product.order_count && <div className="mb-4" />}
 
           {product.description && (
             <>
@@ -187,10 +193,15 @@ export default async function ProductPage({
                   <p className="text-xs text-gray-500 mt-0.5">Inclusive of all taxes</p>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <span className={`text-sm font-semibold ${product.is_available ? "text-[#007600]" : "text-gray-500"}`}>
                     {product.is_available ? "In Stock" : "Currently unavailable"}
                   </span>
+                  {product.order_count > 0 && (
+                    <span className="text-xs text-gray-500">
+                      <span className="font-semibold text-gray-700">{product.order_count}+</span> sold
+                    </span>
+                  )}
                 </div>
 
                 {product.description && (

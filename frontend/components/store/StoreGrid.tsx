@@ -12,6 +12,7 @@ interface Product {
   image_url: string | null
   is_available: boolean
   has_variants: boolean
+  order_count: number
 }
 
 export default function StoreGrid({ products }: { products: Product[] }) {
@@ -125,6 +126,11 @@ export default function StoreGrid({ products }: { products: Product[] }) {
                   <span className="inline-block mt-1 text-[10px] font-bold text-white px-1.5 py-0.5 rounded" style={{ background: "#B12704" }}>
                     {Math.round((1 - product.price / product.compare_at_price) * 100)}% OFF
                   </span>
+                )}
+                {product.order_count > 0 && (
+                  <p className="mt-1 text-[10px] text-gray-400">
+                    {product.order_count}+ sold
+                  </p>
                 )}
                 {product.is_available && (
                   <div

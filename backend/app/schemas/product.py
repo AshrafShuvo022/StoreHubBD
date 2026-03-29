@@ -57,10 +57,16 @@ class ProductOut(BaseModel):
     is_available: bool
     has_variants: bool
     variants: list[ProductVariantOut] = []
+    order_count: int = 0
     created_at: datetime
     updated_at: datetime
 
     model_config = {"from_attributes": True}
+
+    @field_validator("order_count", mode="before")
+    @classmethod
+    def default_order_count(cls, v):
+        return v if v is not None else 0
 
     @field_validator("image_urls", mode="before")
     @classmethod

@@ -1,13 +1,28 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session, with_expression
 
 from app.core.database import get_db
+from app.models.order import Order, OrderItem, OrderStatus
 from app.models.product import Product
 from app.models.seller import Seller
 from app.schemas.product import ProductOut
 from app.schemas.seller import SellerOut
 
 router = APIRouter(prefix="/api/store", tags=["store"])
+
+
+def _sold_count_subquery():
+    return (
+        select(func.coalesce(func.sum(OrderItem.quantity), 0))
+        .join(Order, Order.id == OrderItem.order_id)
+        .where(
+            OrderItem.product_id == Product.id,
+            Order.status != OrderStatus.cancelled,
+        )
+        .correlate(Product)
+        .scalar_subquery()
+    )
 
 
 def get_store_or_404(store_name: str, db: Session) -> Seller:
@@ -31,6 +46,7 @@ def get_store_products(store_name: str, db: Session = Depends(get_db)):
     seller = get_store_or_404(store_name, db)
     return (
         db.query(Product)
+        .options(with_expression(Product.order_count, _sold_count_subquery()))
         .filter(Product.seller_id == seller.id, Product.is_available == True)
         .order_by(Product.created_at.desc())
         .all()
@@ -42,6 +58,7 @@ def get_store_product(store_name: str, product_id: str, db: Session = Depends(ge
     seller = get_store_or_404(store_name, db)
     product = (
         db.query(Product)
+        .options(with_expression(Product.order_count, _sold_count_subquery()))
         .filter(
             Product.id == product_id,
             Product.seller_id == seller.id,
