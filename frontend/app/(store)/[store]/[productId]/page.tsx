@@ -97,7 +97,7 @@ export default async function ProductPage({
 
       {/* Mobile layout */}
       <div className="lg:hidden">
-        <div className="relative w-full bg-gray-50" style={{ minHeight: "320px" }}>
+        <div className="relative w-full">
           <ProductImageGallery
             images={product.image_urls?.length ? product.image_urls : product.image_url ? [product.image_url] : []}
             productName={product.name}
@@ -113,7 +113,7 @@ export default async function ProductPage({
           </div>
         </div>
 
-        <div className="px-4 pt-5 pb-36 border-b border-gray-100">
+        <div className="px-4 pt-5 pb-5 border-b border-gray-100">
           <h1 className="text-xl font-semibold text-gray-900 leading-snug mb-2">
             {product.name}
           </h1>
@@ -149,13 +149,13 @@ export default async function ProductPage({
         </div>
 
         {/* Share — mobile */}
-        <div className="px-4 py-3 border-t border-gray-100">
+        <div className="px-4 py-3 border-t border-gray-100 pb-4">
           <ProductShareBar productName={product.name} />
         </div>
 
         {/* Ask the seller — mobile */}
         {seller && (seller.phone || seller.facebook_page) && (
-          <div className="px-4 py-4 border-t border-gray-100">
+          <div className="px-4 py-4 pb-36 border-t border-gray-100">
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2.5">Ask the seller</p>
             <div className="flex gap-2 flex-wrap">
               {seller.phone && (
