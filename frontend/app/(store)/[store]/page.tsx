@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import Image from "next/image"
 import StoreGrid from "@/components/store/StoreGrid"
 import StoreSectionRow from "@/components/store/StoreSectionRow"
+import NewArrivalsCarousel from "@/components/store/NewArrivalsCarousel"
 import CartFab from "@/components/store/CartFab"
 import SellerContactWidget from "@/components/store/SellerContactWidget"
 import StorePageClient from "@/components/store/StorePageClient"
@@ -166,7 +167,7 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
       {/* Products */}
       <div className="max-w-6xl mx-auto px-4 lg:px-6 py-5">
         <StoreSectionRow title="Best Sellers" badge="HOT" products={bestSellers} />
-        <StoreSectionRow title="New Arrivals" products={newArrivals} />
+        <NewArrivalsCarousel products={newArrivals} />
         {(bestSellers.length > 0 || newArrivals.length > 0) && (
           <div className="mb-3">
             <h2 className="text-sm font-bold text-gray-900">All Products</h2>
