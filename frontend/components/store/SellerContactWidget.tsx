@@ -83,7 +83,7 @@ export default function SellerContactWidget({ phone, facebookPage }: Props) {
       {/* ── Desktop: floating icon buttons, bottom-right, expand on hover ── */}
       <div className="hidden lg:flex fixed bottom-8 right-6 z-30 flex-col items-end gap-3">
         {/* Label */}
-        <span className="text-[10px] font-semibold text-white/50 uppercase tracking-widest mr-1">
+        <span className="text-[10px] font-semibold uppercase tracking-widest mr-1" style={{ color: "#131921" }}>
           Contact
         </span>
 

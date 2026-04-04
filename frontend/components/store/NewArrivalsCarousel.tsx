@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { getImageUrl } from "@/lib/imageUrl"
 
 interface Product {
   id: string
@@ -126,7 +127,7 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
                   >
                     {product.image_url ? (
                       <Image
-                        src={product.image_url}
+                        src={getImageUrl(product.image_url, "card")}
                         alt={product.name}
                         fill
                         className="object-cover"

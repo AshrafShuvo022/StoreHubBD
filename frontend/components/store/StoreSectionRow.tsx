@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { getImageUrl } from "@/lib/imageUrl"
 
 interface Product {
   id: string
@@ -44,7 +45,7 @@ export default function StoreSectionRow({ title, badge, products }: StoreSection
             <div className="relative aspect-square w-full overflow-hidden bg-gray-50">
               {product.image_url ? (
                 <Image
-                  src={product.image_url}
+                  src={getImageUrl(product.image_url, "card")}
                   alt={product.name}
                   fill
                   className="object-cover group-hover:scale-[1.03] transition-transform duration-300"

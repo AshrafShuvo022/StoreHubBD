@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from "react"
 import Image from "next/image"
+import { getImageUrl } from "@/lib/imageUrl"
 
 interface Props {
   images: string[]
@@ -99,7 +100,7 @@ export default function ProductImageGallery({ images, productName }: Props) {
           {images.map((url, i) => (
             <div key={i} className="relative flex-shrink-0 w-full h-full snap-center bg-gray-50">
               <Image
-                src={url}
+                src={getImageUrl(url, "full")}
                 alt={`${productName} ${i + 1}`}
                 fill
                 className="object-contain p-4"
@@ -143,7 +144,7 @@ export default function ProductImageGallery({ images, productName }: Props) {
           onMouseLeave={() => setZooming(false)}
         >
           <Image
-            src={images[active]}
+            src={getImageUrl(images[active], "full")}
             alt={productName}
             fill
             className="object-contain p-4 pointer-events-none"
@@ -180,7 +181,7 @@ export default function ProductImageGallery({ images, productName }: Props) {
                   i === active ? "border-[#FF9900]" : "border-transparent hover:border-gray-300"
                 }`}
               >
-                <Image src={url} alt={`${productName} ${i + 1}`} fill className="object-cover" sizes="56px" />
+                <Image src={getImageUrl(url, "thumb")} alt={`${productName} ${i + 1}`} fill className="object-cover" sizes="56px" />
               </button>
             ))}
           </div>
@@ -192,7 +193,7 @@ export default function ProductImageGallery({ images, productName }: Props) {
         <div
           style={{
             ...zoomStyle,
-            background:         `url(${images[active]}) no-repeat`,
+            background:         `url(${getImageUrl(images[active], "full")}) no-repeat`,
             backgroundSize:     `${ZOOM_FACTOR * 100}%`,
             backgroundPosition: `${bgX} ${bgY}`,
             border:             "1px solid #e5e7eb",

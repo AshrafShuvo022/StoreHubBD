@@ -169,11 +169,11 @@ export default async function ProductPage({
 
       {/* Desktop layout */}
       <div className="hidden lg:block" style={{ background: "#f0f2f2" }}>
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="grid lg:grid-cols-[1fr_400px] gap-5 items-start">
+        <div className="max-w-5xl mx-auto px-6 py-6">
+          <div className="grid lg:grid-cols-[420px_1fr] gap-6 items-start">
 
             {/* Left: image gallery */}
-            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden sticky top-20" style={{ aspectRatio: "1/1" }}>
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden sticky top-20" style={{ aspectRatio: "1/1", maxWidth: "420px" }}>
               <ProductImageGallery
                 images={product.image_urls?.length ? product.image_urls : product.image_url ? [product.image_url] : []}
                 productName={product.name}

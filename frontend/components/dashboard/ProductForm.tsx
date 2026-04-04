@@ -288,7 +288,10 @@ export default function ProductForm({ initialData }: ProductFormProps) {
           {/* Image Panel */}
           <div className="bg-white rounded-2xl border border-gray-200 p-5">
             <label className="block text-sm font-medium text-gray-700 mb-1">Product Photos</label>
-            <p className="text-xs text-gray-400 mb-3">Upload multiple photos. First is the main image.</p>
+            <p className="text-xs text-gray-400 mb-1">Upload multiple photos. First is the main image.</p>
+            <p className="text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded px-2.5 py-1.5 mb-3">
+              Square images (1:1) look best — e.g. 800×800 or 1000×1000px. Any size works but may be auto-cropped.
+            </p>
             <MultiImageUploader value={imageUrls} onChange={setImageUrls} />
           </div>
 
