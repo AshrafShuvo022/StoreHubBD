@@ -53,10 +53,7 @@ export default function SellerContactWidget({ phone, facebookPage }: Props) {
               target="_blank"
               rel="noreferrer"
               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-bold active:scale-95 transition-transform"
-              style={{
-                background: "#25D366",
-                boxShadow: "0 4px 16px rgba(37,211,102,0.4)",
-              }}
+              style={{ background: "#25D366" }}
             >
               {WA_SVG}
               WhatsApp
@@ -68,10 +65,7 @@ export default function SellerContactWidget({ phone, facebookPage }: Props) {
               target="_blank"
               rel="noreferrer"
               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-bold active:scale-95 transition-transform"
-              style={{
-                background: "linear-gradient(135deg, #0084FF, #0099FF)",
-                boxShadow: "0 4px 16px rgba(0,132,255,0.4)",
-              }}
+              style={{ background: "#0084FF" }}
             >
               {MSG_SVG}
               Messenger
@@ -93,12 +87,9 @@ export default function SellerContactWidget({ phone, facebookPage }: Props) {
             href={waLink(phone)}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center overflow-hidden rounded-full text-white text-sm font-bold transition-all duration-300"
+            className="flex items-center overflow-hidden rounded-full text-white text-xs font-semibold transition-all duration-300"
             style={{
               background: "#25D366",
-              boxShadow: waHovered
-                ? "0 0 0 6px rgba(37,211,102,0.2), 0 8px 28px rgba(37,211,102,0.5)"
-                : "0 0 0 4px rgba(37,211,102,0.15), 0 4px 18px rgba(37,211,102,0.4)",
               height: "48px",
               width: waHovered ? "172px" : "48px",
               paddingLeft: waHovered ? "14px" : "0px",
@@ -127,12 +118,9 @@ export default function SellerContactWidget({ phone, facebookPage }: Props) {
             href={messengerLink(facebookPage)}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center overflow-hidden rounded-full text-white text-sm font-bold transition-all duration-300"
+            className="flex items-center overflow-hidden rounded-full text-white text-xs font-semibold transition-all duration-300"
             style={{
-              background: "linear-gradient(135deg, #0084FF, #0099FF)",
-              boxShadow: msgHovered
-                ? "0 0 0 6px rgba(0,132,255,0.2), 0 8px 28px rgba(0,132,255,0.5)"
-                : "0 0 0 4px rgba(0,132,255,0.15), 0 4px 18px rgba(0,132,255,0.4)",
+              background: "#0084FF",
               height: "48px",
               width: msgHovered ? "196px" : "48px",
               paddingLeft: msgHovered ? "14px" : "0px",
@@ -156,13 +144,6 @@ export default function SellerContactWidget({ phone, facebookPage }: Props) {
         )}
       </div>
 
-      {/* Pulse keyframe */}
-      <style>{`
-        @keyframes wa-pulse {
-          0%, 100% { box-shadow: 0 0 0 4px rgba(37,211,102,0.15), 0 4px 18px rgba(37,211,102,0.4); }
-          50%       { box-shadow: 0 0 0 8px rgba(37,211,102,0.08), 0 4px 18px rgba(37,211,102,0.4); }
-        }
-      `}</style>
     </>
   )
 }

@@ -3,7 +3,7 @@
 import { useCart } from "./CartContext"
 
 export default function CartIconButton() {
-  const { count, total, openCart } = useCart()
+  const { count, openCart } = useCart()
 
   return (
     <button
@@ -24,15 +24,6 @@ export default function CartIconButton() {
         )}
       </div>
 
-      {/* Total pill — only shown when cart has items */}
-      {count > 0 && (
-        <span
-          className="hidden sm:flex items-center px-2.5 py-1 rounded-lg text-xs font-bold text-gray-900 leading-none"
-          style={{ background: "#FFD814", border: "1px solid #FCD200" }}
-        >
-          ৳{total.toLocaleString()}
-        </span>
-      )}
     </button>
   )
 }
