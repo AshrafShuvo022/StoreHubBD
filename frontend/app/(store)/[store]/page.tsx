@@ -3,7 +3,6 @@ import Image from "next/image"
 import StoreGrid from "@/components/store/StoreGrid"
 import StoreSectionRow from "@/components/store/StoreSectionRow"
 import NewArrivalsCarousel from "@/components/store/NewArrivalsCarousel"
-import CartFab from "@/components/store/CartFab"
 import SellerContactWidget from "@/components/store/SellerContactWidget"
 import StorePageClient from "@/components/store/StorePageClient"
 
@@ -165,15 +164,26 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
       >
 
       {/* Products */}
-      <div className="max-w-6xl mx-auto px-4 lg:px-6 py-5">
-        <StoreSectionRow title="Best Sellers" badge="HOT" products={bestSellers} />
-        <NewArrivalsCarousel products={newArrivals} />
-        {(bestSellers.length > 0 || newArrivals.length > 0) && (
-          <div className="mb-3">
-            <h2 className="text-sm font-bold text-gray-900">All Products</h2>
+      <div className="py-5">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <StoreSectionRow title="Best Sellers" badge="HOT" products={bestSellers} />
+        </div>
+
+        {/* New Arrivals — full width for max carousel spread */}
+        {newArrivals.length > 0 && (
+          <div className="w-full px-2 sm:px-6">
+            <NewArrivalsCarousel products={newArrivals} />
           </div>
         )}
-        <StoreGrid products={availableProducts} />
+
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          {(bestSellers.length > 0 || newArrivals.length > 0) && (
+            <div className="mb-3">
+              <h2 className="text-sm font-bold text-gray-900">All Products</h2>
+            </div>
+          )}
+          <StoreGrid products={availableProducts} />
+        </div>
       </div>
 
       {/* Footer */}
@@ -263,7 +273,6 @@ export default async function StorePage({ params }: { params: Promise<{ store: s
 
       </StorePageClient>
 
-      <CartFab />
       <SellerContactWidget phone={seller.phone} facebookPage={seller.facebook_page} />
     </div>
   )

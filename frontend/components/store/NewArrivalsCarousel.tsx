@@ -15,9 +15,9 @@ interface Product {
 }
 
 const AUTO_SPIN_MS = 2600
-const CARD_W = 150
-const CARD_H = 185
-const RADIUS = 210
+const CARD_W = 170
+const CARD_H = 210
+const RADIUS = 300
 
 export default function NewArrivalsCarousel({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0)
@@ -39,7 +39,8 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
 
   return (
     <div className="mb-8">
-      {/* Header */}
+      {/* Header — aligned with other section titles */}
+      <div className="max-w-6xl mx-auto px-4 lg:px-6">
       <div className="flex items-center gap-2 mb-1">
         <span className="w-1 h-4 rounded-full" style={{ background: "#FF9900" }} />
         <h2 className="text-sm font-bold text-gray-900">New Arrivals</h2>
@@ -50,11 +51,12 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
           NEW
         </span>
       </div>
+      </div>
 
       {/* 3D Carousel stage */}
       <div
         className="relative flex items-center justify-center select-none"
-        style={{ height: `${CARD_H + 100}px`, perspective: "900px" }}
+        style={{ height: `${CARD_H + 120}px`, perspective: "1100px" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -117,7 +119,7 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
                         : "0 8px 24px rgba(0,0,0,0.12)",
                   }}
                 >
-                  {/* Image */}
+                  {/* Image — square crop using card width */}
                   <div
                     className="relative overflow-hidden bg-gray-50"
                     style={{ height: `${CARD_W}px`, flexShrink: 0 }}
@@ -128,11 +130,11 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
                         alt={product.name}
                         fill
                         className="object-cover"
-                        sizes="160px"
+                        sizes="180px"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
                           <line x1="3" y1="6" x2="21" y2="6" />
                           <path d="M16 10a4 4 0 01-8 0" />
@@ -141,7 +143,7 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
                     )}
                     {/* NEW ribbon */}
                     <span
-                      className="absolute top-2 left-2 text-[9px] font-black text-white px-1.5 py-0.5 rounded"
+                      className="absolute top-2.5 left-2.5 text-[10px] font-black text-white px-2 py-0.5 rounded"
                       style={{ background: "#FF9900" }}
                     >
                       NEW
@@ -149,11 +151,11 @@ export default function NewArrivalsCarousel({ products }: { products: Product[] 
                   </div>
 
                   {/* Info */}
-                  <div className="px-2.5 py-2 flex flex-col flex-1">
-                    <p className="text-[11.5px] text-gray-800 leading-snug line-clamp-2 flex-1">
+                  <div className="px-3 py-2.5 flex flex-col flex-1">
+                    <p className="text-[13px] text-gray-800 leading-snug line-clamp-2 flex-1">
                       {product.name}
                     </p>
-                    <p className="text-sm font-bold mt-1.5" style={{ color: "#B12704" }}>
+                    <p className="text-base font-bold mt-2" style={{ color: "#B12704" }}>
                       ৳{Number(product.price).toLocaleString()}
                     </p>
                   </div>
