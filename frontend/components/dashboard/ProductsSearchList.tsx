@@ -45,7 +45,7 @@ export default function ProductsSearchList({ products }: { products: Product[] }
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search products..."
-            className="w-full pl-9 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+            className="w-full pl-9 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
           />
         </div>
         <div className="flex gap-1 bg-gray-100 p-1 rounded-xl self-start sm:self-auto">
@@ -71,7 +71,7 @@ export default function ProductsSearchList({ products }: { products: Product[] }
           {query && (
             <button
               onClick={() => { setQuery(""); setFilter("all") }}
-              className="mt-3 text-sm font-semibold text-indigo-600 hover:underline"
+              className="mt-3 text-sm font-semibold text-[#FF9900] hover:underline"
             >
               Clear search
             </button>
@@ -92,7 +92,7 @@ export default function ProductsSearchList({ products }: { products: Product[] }
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {filtered.map((p) => (
-                  <tr key={p.id} className="hover:bg-indigo-50/30 transition-colors">
+                  <tr key={p.id} className="hover:bg-[#FF9900]/5/30 transition-colors">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         {p.image_url ? (
@@ -126,7 +126,7 @@ export default function ProductsSearchList({ products }: { products: Product[] }
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/products/${p.id}`}
-                          className="text-xs font-semibold text-indigo-600 border border-indigo-100 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors"
+                          className="text-xs font-semibold text-[#FF9900] border border-[#FF9900]/20 bg-[#FF9900]/8 hover:bg-[#FF9900]/10 px-3 py-1.5 rounded-lg transition-colors"
                         >
                           Edit
                         </Link>
@@ -160,7 +160,7 @@ export default function ProductsSearchList({ products }: { products: Product[] }
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-900 truncate">{p.name}</p>
-                  <p className="text-indigo-600 font-bold text-sm">৳{Number(p.price).toLocaleString()}</p>
+                  <p className="text-[#FF9900] font-bold text-sm">৳{Number(p.price).toLocaleString()}</p>
                 </div>
                 <div className="flex flex-col items-end gap-2">
                   <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
@@ -169,7 +169,7 @@ export default function ProductsSearchList({ products }: { products: Product[] }
                     {p.is_available ? "Live" : "Hidden"}
                   </span>
                   <div className="flex gap-1.5">
-                    <Link href={`/products/${p.id}`} className="text-xs text-indigo-600 font-semibold">Edit</Link>
+                    <Link href={`/products/${p.id}`} className="text-xs text-[#FF9900] font-semibold">Edit</Link>
                     <DeleteProductButton productId={p.id} />
                   </div>
                 </div>

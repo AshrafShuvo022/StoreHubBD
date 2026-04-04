@@ -46,7 +46,7 @@ export default function OrdersPage() {
   if (loading) {
     return (
       <div className="p-6 sm:p-8 lg:p-10 flex items-center justify-center min-h-[300px]">
-        <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[#FF9900] border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -71,7 +71,7 @@ export default function OrdersPage() {
               onClick={() => setFilter(f)}
               className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 filter === f
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-[#FF9900] text-gray-900"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -116,9 +116,9 @@ export default function OrdersPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {filtered.map((o) => (
-                  <tr key={o.id} className="hover:bg-indigo-50/20 transition-colors">
+                  <tr key={o.id} className="hover:bg-[#FF9900]/5/20 transition-colors">
                     <td className="px-4 py-3">
-                      <span className="font-mono font-bold text-indigo-700 text-sm">{o.order_code}</span>
+                      <span className="font-mono font-bold text-[#FF9900] text-sm">{o.order_code}</span>
                     </td>
                     <td className="px-4 py-3">
                       <p className="font-medium text-gray-800">{o.customer_name}</p>
@@ -139,7 +139,7 @@ export default function OrdersPage() {
                     <td className="px-4 py-3 text-right">
                       <Link
                         href={`/orders/${o.id}`}
-                        className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 justify-end"
+                        className="text-xs font-semibold text-[#FF9900] hover:brightness-75 flex items-center gap-1 justify-end"
                       >
                         View
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -162,7 +162,7 @@ export default function OrdersPage() {
                 className="block bg-white rounded-2xl border border-gray-200 p-4 hover:shadow-md transition-all"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono font-bold text-indigo-700">{o.order_code}</span>
+                  <span className="font-mono font-bold text-[#FF9900]">{o.order_code}</span>
                   <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold border capitalize ${STATUS_BADGE[o.status] || "bg-gray-50 text-gray-500 border-gray-100"}`}>
                     <span className="w-1 h-1 rounded-full bg-current" />
                     {o.status}

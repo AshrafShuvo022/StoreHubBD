@@ -65,12 +65,12 @@ export default function Sidebar({ storeName }: { storeName: string }) {
     .slice(0, 2)
 
   return (
-    <aside className="hidden lg:flex w-60 h-screen sticky top-0 bg-slate-950 flex-col flex-shrink-0 overflow-y-auto">
+    <aside className="hidden lg:flex w-60 h-screen sticky top-0 flex-col flex-shrink-0 overflow-y-auto" style={{ background: "#131921" }}>
 
       {/* Brand */}
       <div className="px-4 pt-5 pb-4">
         <div className="flex items-center gap-2 mb-5">
-          <div className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#FF9900" }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
               <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
             </svg>
@@ -98,14 +98,15 @@ export default function Sidebar({ storeName }: { storeName: string }) {
               onClick={link.href === "/orders" ? clearNewOrders : undefined}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 active
-                  ? "bg-indigo-500 text-white"
+                  ? "text-gray-900"
                   : "text-slate-400 hover:bg-white/5 hover:text-slate-200"
               }`}
+              style={active ? { background: "#FF9900" } : undefined}
             >
-              <span className={active ? "text-white" : "text-slate-500"}>{link.icon}</span>
+              <span className={active ? "text-gray-900" : "text-slate-500"}>{link.icon}</span>
               <span className="flex-1">{link.label}</span>
               {link.href === "/orders" && newOrders.length > 0 && (
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full text-gray-900" style={{ background: "#FF9900" }}>
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white" style={{ background: "#131921" }}>
                   {newOrders.length}
                 </span>
               )}
@@ -117,7 +118,7 @@ export default function Sidebar({ storeName }: { storeName: string }) {
       {/* Footer */}
       <div className="px-3 py-4 border-t border-white/5">
         <div className="flex items-center gap-3 px-3 py-2 mb-1">
-          <div className="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/20 flex items-center justify-center text-indigo-300 text-xs font-bold flex-shrink-0">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: "rgba(255,153,0,0.15)", color: "#FF9900" }}>
             {initials}
           </div>
           <span className="text-sm font-medium text-slate-300 truncate capitalize">{storeName}</span>

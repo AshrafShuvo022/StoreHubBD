@@ -85,7 +85,7 @@ export default async function DashboardPage() {
               href={`http://${session.storeName}.localhost:3000`}
               target="_blank"
               rel="noreferrer"
-              className="text-sm text-indigo-600 font-medium hover:underline flex items-center gap-1"
+              className="text-sm text-[#FF9900] font-medium hover:underline flex items-center gap-1"
             >
               {session.storeName}.storehubbd.com
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
           href={`http://${session.storeName}.localhost:3000`}
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 border border-indigo-200 bg-indigo-50 px-4 py-2 rounded-xl hover:bg-indigo-100 transition-colors"
+          className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-[#FF9900] border border-[#FF9900]/30 bg-[#FF9900]/8 px-4 py-2 rounded-xl hover:bg-[#FF9900]/10 transition-colors"
         >
           View Live Store
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -118,9 +118,9 @@ export default async function DashboardPage() {
             label: "Total Revenue",
             value: `৳${Number(total_revenue).toLocaleString()}`,
             sub: "All time (excl. cancelled)",
-            bar: "bg-indigo-500",
+            bar: "bg-[#FF9900]/80",
             icon: (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
               </svg>
             ),
@@ -131,7 +131,7 @@ export default async function DashboardPage() {
             sub: "Current month revenue",
             bar: "bg-violet-500",
             icon: (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
               </svg>
             ),
@@ -241,7 +241,7 @@ export default async function DashboardPage() {
                     </div>
                     <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-indigo-500 rounded-full"
+                        className="h-full bg-[#FF9900]/80 rounded-full"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -257,7 +257,7 @@ export default async function DashboardPage() {
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-base font-bold text-gray-900">Recent Orders</h2>
-          <Link href="/orders" className="text-xs font-semibold text-indigo-600 hover:underline">
+          <Link href="/orders" className="text-xs font-semibold text-[#FF9900] hover:underline">
             View All →
           </Link>
         </div>
@@ -269,7 +269,7 @@ export default async function DashboardPage() {
               href={`http://${session.storeName}.localhost:3000`}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-block text-indigo-600 text-sm font-semibold hover:underline"
+              className="mt-3 inline-block text-[#FF9900] text-sm font-semibold hover:underline"
             >
               View your store →
             </a>
@@ -283,14 +283,14 @@ export default async function DashboardPage() {
                 className="flex items-center justify-between px-4 py-3.5 hover:bg-gray-50 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="w-8 h-8 rounded-xl bg-[#FF9900]/8 flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF9900" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="1" />
                     </svg>
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-sm font-bold text-indigo-700">{o.order_code}</span>
+                      <span className="font-mono text-sm font-bold text-[#FF9900]">{o.order_code}</span>
                       <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold border ${STATUS_BADGE[o.status] || "bg-gray-50 text-gray-500 border-gray-100"}`}>
                         {o.status}
                       </span>
@@ -314,9 +314,9 @@ export default async function DashboardPage() {
 
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <Link href="/products/new" className="bg-white rounded-2xl border-2 border-dashed border-gray-200 p-4 flex items-center gap-3 hover:border-indigo-400 hover:bg-indigo-50 transition-all group">
-          <div className="w-9 h-9 rounded-xl bg-indigo-100 group-hover:bg-indigo-200 flex items-center justify-center transition-colors flex-shrink-0">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+        <Link href="/products/new" className="bg-white rounded-2xl border-2 border-dashed border-gray-200 p-4 flex items-center gap-3 hover:border-[#FF9900]/50 hover:bg-[#FF9900]/5 transition-all group">
+          <div className="w-9 h-9 rounded-xl bg-[#FF9900]/15 group-hover:bg-[#FF9900]/20 flex items-center justify-center transition-colors flex-shrink-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9900" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
           </div>
           <div>
             <p className="text-sm font-semibold text-gray-900">Add Product</p>

@@ -149,7 +149,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 type="text"
                 required
                 defaultValue={initialData?.name}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all"
                 placeholder="Handmade Bag"
               />
             </div>
@@ -160,7 +160,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 name="description"
                 rows={3}
                 defaultValue={initialData?.description || ""}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-400 transition-all resize-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all resize-none"
                 placeholder="Describe your product..."
               />
             </div>
@@ -170,7 +170,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Sale Price (BDT)</label>
-                  <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
+                  <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#FF9900] focus-within:border-[#FF9900] transition-all">
                     <span className="px-3 py-2.5 bg-gray-50 text-gray-700 text-sm font-semibold border-r border-gray-200 flex-shrink-0">৳</span>
                     <input
                       name="price"
@@ -189,7 +189,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                     Compare at Price
                     <span className="ml-1 text-xs text-gray-400 font-normal">(optional)</span>
                   </label>
-                  <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-400 transition-all">
+                  <div className="flex items-stretch border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#FF9900] focus-within:border-[#FF9900] transition-all">
                     <span className="px-3 py-2.5 bg-gray-50 text-gray-700 text-sm font-semibold border-r border-gray-200 flex-shrink-0">৳</span>
                     <input
                       name="compare_at_price"
@@ -218,7 +218,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 type="button"
                 onClick={() => toggleVariants(!hasVariants)}
                 className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${
-                  hasVariants ? "bg-indigo-600" : "bg-gray-200"
+                  hasVariants ? "bg-[#FF9900]" : "bg-gray-200"
                 }`}
               >
                 <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${
@@ -242,7 +242,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                       value={v.label}
                       onChange={(e) => updateVariant(i, "label", e.target.value)}
                       placeholder="Small / Red"
-                      className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                      className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900]"
                     />
                     <input
                       type="number"
@@ -251,7 +251,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                       placeholder="450"
                       min="0"
                       step="0.01"
-                      className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                      className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9900]"
                     />
                     <button
                       type="button"
@@ -268,7 +268,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 <button
                   type="button"
                   onClick={addVariant}
-                  className="w-full mt-1 py-2 border-2 border-dashed border-gray-200 rounded-xl text-sm font-medium text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all"
+                  className="w-full mt-1 py-2 border-2 border-dashed border-gray-200 rounded-xl text-sm font-medium text-[#FF9900] hover:border-[#FF9900]/50 hover:bg-[#FF9900]/5 transition-all"
                 >
                   + Add Variant
                 </button>
@@ -306,7 +306,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
                 type="button"
                 onClick={() => setIsAvailable((v) => !v)}
                 className={`relative w-11 h-6 rounded-full transition-colors ${
-                  isAvailable ? "bg-indigo-600" : "bg-gray-200"
+                  isAvailable ? "bg-[#FF9900]" : "bg-gray-200"
                 }`}
               >
                 <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${
@@ -328,7 +328,7 @@ export default function ProductForm({ initialData }: ProductFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="bg-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50 active:scale-[0.98] transition-all"
+          className="bg-[#FF9900] text-gray-900 disabled:opacity-50 active:scale-[0.98] transition-all"
         >
           {loading ? "Saving..." : isEdit ? "Save Changes" : "Add Product"}
         </button>

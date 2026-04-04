@@ -85,7 +85,7 @@ export default function ImageUploader({
         {/* Upload overlay spinner */}
         {uploading && (
           <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-            <div className="w-7 h-7 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-7 h-7 border-2 border-[#FF9900] border-t-transparent rounded-full animate-spin" />
           </div>
         )}
       </div>

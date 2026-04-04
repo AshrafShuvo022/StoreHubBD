@@ -77,7 +77,7 @@ export default function OrderStatusUpdater({
         disabled={!hasChange || loading}
         className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all ${
           hasChange
-            ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98]"
+            ? "bg-[#FF9900] text-gray-900 active:scale-[0.98]"
             : "bg-gray-100 text-gray-400 cursor-not-allowed"
         } disabled:opacity-60`}
       >

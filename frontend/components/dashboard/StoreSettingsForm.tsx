@@ -204,7 +204,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
             <button
               type="button"
               onClick={() => setShowBestSellers((v) => !v)}
-              className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${showBestSellers ? "bg-indigo-600" : "bg-gray-200"}`}
+              className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${showBestSellers ? "bg-[#FF9900]" : "bg-gray-200"}`}
             >
               <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${showBestSellers ? "translate-x-5" : "translate-x-0"}`} />
             </button>
@@ -220,7 +220,7 @@ export default function StoreSettingsForm({ seller }: { seller: Seller }) {
             <button
               type="button"
               onClick={() => setShowNewArrivals((v) => !v)}
-              className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${showNewArrivals ? "bg-indigo-600" : "bg-gray-200"}`}
+              className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${showNewArrivals ? "bg-[#FF9900]" : "bg-gray-200"}`}
             >
               <div className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform ${showNewArrivals ? "translate-x-5" : "translate-x-0"}`} />
             </button>

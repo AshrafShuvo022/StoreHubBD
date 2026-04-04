@@ -70,7 +70,7 @@ export default function MultiImageUploader({ value, onChange }: Props) {
             <div key={url + i} className="relative group aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-50">
               <Image src={url} alt={`Product image ${i + 1}`} fill className="object-cover" sizes="150px" />
               {i === 0 && (
-                <span className="absolute top-1.5 left-1.5 text-[10px] font-bold bg-indigo-600 text-white px-1.5 py-0.5 rounded-md">
+                <span className="absolute top-1.5 left-1.5 text-[10px] font-bold bg-[#FF9900] text-gray-900 px-1.5 py-0.5 rounded-md">
                   Main
                 </span>
               )}
@@ -102,10 +102,10 @@ export default function MultiImageUploader({ value, onChange }: Props) {
         type="button"
         onClick={() => inputRef.current?.click()}
         disabled={uploading}
-        className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600 disabled:opacity-50 transition-all"
+        className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:border-[#FF9900]/50 hover:bg-[#FF9900]/5 hover:text-[#FF9900] disabled:opacity-50 transition-all"
       >
         {uploading ? (
-          <><div className="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />Uploading...</>
+          <><div className="w-4 h-4 border-2 border-[#FF9900] border-t-transparent rounded-full animate-spin" />Uploading...</>
         ) : (
           <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>{value.length === 0 ? "Upload Photos" : "Add More Photos"}</>
         )}

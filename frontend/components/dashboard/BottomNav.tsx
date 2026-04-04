@@ -57,7 +57,7 @@ export default function BottomNav() {
   const { newOrders, clearNewOrders } = useOrderNotifications()
 
   return (
-    <nav className="lg:hidden fixed bottom-0 inset-x-0 bg-slate-950 border-t border-white/5 z-40">
+    <nav className="lg:hidden fixed bottom-0 inset-x-0 border-t border-white/5 z-40" style={{ background: "#131921" }}>
       <div className="flex items-center justify-around">
         {tabs.map((tab) => {
           const active =
@@ -70,7 +70,7 @@ export default function BottomNav() {
               href={tab.href}
               onClick={isOrders ? clearNewOrders : undefined}
               className={`relative flex flex-col items-center gap-1 py-3 px-4 flex-1 transition-colors ${
-                active ? "text-indigo-400" : "text-slate-600"
+                active ? "text-[#FF9900]" : "text-slate-600"
               }`}
             >
               <div className="relative">
@@ -81,7 +81,7 @@ export default function BottomNav() {
                   </span>
                 )}
               </div>
-              <span className={`text-[10px] font-semibold ${active ? "text-indigo-400" : "text-slate-600"}`}>
+              <span className={`text-[10px] font-semibold ${active ? "text-[#FF9900]" : "text-slate-600"}`}>
                 {tab.label}
               </span>
             </Link>

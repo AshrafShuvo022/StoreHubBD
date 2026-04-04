@@ -42,7 +42,7 @@ export default async function ProductsPage() {
           </Link>
           <Link
             href="/products/new"
-            className="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 active:scale-[0.98] transition-all flex items-center gap-2"
+            className="bg-[#FF9900] text-gray-900 active:scale-[0.98] transition-all flex items-center gap-2"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="5" x2="12" y2="19" />
@@ -67,7 +67,7 @@ export default async function ProductsPage() {
           <p className="text-sm text-gray-500 mb-5">Add your first product to start selling</p>
           <Link
             href="/products/new"
-            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition"
+            className="inline-flex items-center gap-2 bg-[#FF9900] text-gray-900 transition"
           >
             Add your first product
           </Link>

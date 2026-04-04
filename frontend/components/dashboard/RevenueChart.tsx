@@ -73,8 +73,8 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
         >
           <defs>
             <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.01" />
+              <stop offset="0%" stopColor="#FF9900" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#FF9900" stopOpacity="0.01" />
             </linearGradient>
           </defs>
 
@@ -98,7 +98,7 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
             <polyline
               points={pathPoints}
               fill="none"
-              stroke="#4F46E5"
+              stroke="#FF9900"
               strokeWidth="2"
               strokeLinejoin="round"
               strokeLinecap="round"
@@ -125,7 +125,7 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
                   y1={0}
                   x2={xScale(hovered)}
                   y2={CH}
-                  stroke="#E0E7FF"
+                  stroke="#FF9900"
                   strokeWidth="1"
                   strokeDasharray="3 2"
                 />
@@ -133,14 +133,14 @@ export default function RevenueChart({ data }: { data: DayData[] }) {
                   cx={xScale(hovered)}
                   cy={yScale(data[hovered].revenue)}
                   r="4"
-                  fill="#4F46E5"
+                  fill="#FF9900"
                   stroke="white"
                   strokeWidth="2"
                 />
                 {/* Tooltip */}
                 <g transform={`translate(${Math.min(xScale(hovered) + 8, CW - 100)}, ${Math.max(yScale(data[hovered].revenue) - 36, 2)})`}>
-                  <rect rx="6" ry="6" width="96" height="32" fill="#1E1B4B" />
-                  <text x="8" y="13" fontSize="7.5" fill="#A5B4FC" fontWeight="600">
+                  <rect rx="6" ry="6" width="96" height="32" fill="#131921" />
+                  <text x="8" y="13" fontSize="7.5" fill="#FF9900" fontWeight="600">
                     {formatLabel(data[hovered].date)}
                   </text>
                   <text x="8" y="25" fontSize="8.5" fill="white" fontWeight="700">

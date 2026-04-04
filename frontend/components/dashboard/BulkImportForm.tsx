@@ -114,7 +114,7 @@ export default function BulkImportForm({ token }: { token: string }) {
         <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Step 2 — Upload Your File</h2>
 
         <div
-          className="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center cursor-pointer hover:border-indigo-300 hover:bg-indigo-50/30 transition-all"
+          className="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center cursor-pointer hover:border-[#FF9900]/50 hover:bg-[#FF9900]/5/30 transition-all"
           onClick={() => inputRef.current?.click()}
         >
           <svg className="mx-auto mb-3 text-gray-300" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -123,7 +123,7 @@ export default function BulkImportForm({ token }: { token: string }) {
             <line x1="12" y1="3" x2="12" y2="15" />
           </svg>
           {file ? (
-            <p className="text-sm font-semibold text-indigo-600">{file.name}</p>
+            <p className="text-sm font-semibold text-[#FF9900]">{file.name}</p>
           ) : (
             <>
               <p className="text-sm font-semibold text-gray-700">Click to choose file</p>
@@ -153,7 +153,7 @@ export default function BulkImportForm({ token }: { token: string }) {
           <button
             type="submit"
             disabled={!file || loading}
-            className="bg-indigo-600 text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50 active:scale-[0.98] transition-all"
+            className="bg-[#FF9900] text-gray-900 disabled:opacity-50 active:scale-[0.98] transition-all"
           >
             {loading ? "Importing..." : "Import Products"}
           </button>
@@ -199,7 +199,7 @@ export default function BulkImportForm({ token }: { token: string }) {
           {result.created > 0 && (
             <Link
               href="/products"
-              className="inline-block text-sm font-semibold text-indigo-600 hover:underline"
+              className="inline-block text-sm font-semibold text-[#FF9900] hover:underline"
             >
               View your products →
             </Link>
